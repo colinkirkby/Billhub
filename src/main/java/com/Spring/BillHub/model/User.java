@@ -1,19 +1,24 @@
 package com.Spring.BillHub.model;
 
-import org.hibernate.annotations.DynamicUpdate;
-
 import javax.persistence.*;
 
 @Entity
-@DynamicUpdate
-@Table(name = "users")
+@Table(name = "test")
 public class User {
+
+    /*
+    *   GenerateredValue -> Field is Auto generated and provided by the DataBase not user
+    * */
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     private String firstName;
     private String lastName;
+
+    // location of user to be stored here
+    @OneToOne
+    Position position;
 
     public User() {
     }

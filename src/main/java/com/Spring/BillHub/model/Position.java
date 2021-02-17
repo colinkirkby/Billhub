@@ -10,8 +10,6 @@ public class Position {
     private long latitude;
     private long longitude;
 
-    @OneToOne
-    private User user;
 
     public Position() {
     }
