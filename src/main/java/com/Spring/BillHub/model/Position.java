@@ -4,20 +4,19 @@ import org.hibernate.annotations.DynamicUpdate;
 
 
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 @DynamicUpdate
-public class Location {
+public class Position {
     private long latitude;
     private long longitude;
 
     @OneToOne
     private User user;
 
-    public Location() {
+    public Position() {
     }
 
-    public Location(long latitude, long longitude) {
+    public Position(long latitude, long longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
