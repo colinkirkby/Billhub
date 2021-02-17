@@ -26,9 +26,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="e0e945d5-4dd5-4515-8771-5fccbb8b91fd">
-        <schema name="billhub" object-types="procedure, constraint, dataset trigger, index, column, view, function, table" />
-        <schema name="mysql" object-types="procedure, constraint, dataset trigger, index, column, view, function, table" />
-        <schema name="performance_schema" object-types="procedure, view, function, table" />
+        <schema name="mysql" object-types="procedure, view, function, table" />
       </connection>
     </loaded-nodes>
   </component>

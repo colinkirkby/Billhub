@@ -1,31 +1,21 @@
 package com.Spring.BillHub.model;
 
-
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
 @Entity
 @DynamicUpdate
-@Table(name = "Users")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private long latitude;
-    private long longitude;
 
     private String firstName;
     private String lastName;
 
-    public User(long id, String fistName, String lastName) {
-        this.id = id;
-        this.firstName = fistName;
-        this.lastName = lastName;
-    }
-
     public User() {
-
     }
 
     public long getId() {
@@ -36,12 +26,12 @@ public class User {
         this.id = id;
     }
 
-    public String getFistName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public void setFistName(String fistName) {
-        this.firstName = fistName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {

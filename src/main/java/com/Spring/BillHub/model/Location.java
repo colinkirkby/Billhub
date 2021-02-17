@@ -1,19 +1,25 @@
 package com.Spring.BillHub.model;
 
-import javax.persistence.*;
+import org.hibernate.annotations.DynamicUpdate;
 
-@Entity
-public class Position {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@DynamicUpdate
+public class Location {
     private long latitude;
     private long longitude;
 
     @OneToOne
     private User user;
 
-    public Position(){
+    public Location() {
+    }
 
+    public Location(long latitude, long longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public long getLatitude() {
@@ -30,13 +36,5 @@ public class Position {
 
     public void setLongitude(long longitude) {
         this.longitude = longitude;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }
