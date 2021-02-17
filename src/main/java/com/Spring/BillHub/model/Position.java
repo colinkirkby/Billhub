@@ -2,11 +2,16 @@ package com.Spring.BillHub.model;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-
-import javax.persistence.OneToOne;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @DynamicUpdate
+@Entity
 public class Position {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long latitude;
     private long longitude;
 
