@@ -16,6 +16,15 @@ test-job2:
     - echo "which simulates a test that runs 20 seconds longer than test-job1"
     - sleep 20
 
+maven-build:
+  image: maven:3-jdk-8
+  stage: build
+  script: "mvn package -B"
+  artifacts:
+    paths:
+      - .mvn/wrapper/*.jar*.jar
+
+
 deploy-prod:
   stage: deploy
   script:
