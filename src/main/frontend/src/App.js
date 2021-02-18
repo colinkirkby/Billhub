@@ -12,10 +12,10 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route path = '/' exact component = {Dashboard} />
+          <Route path = '/' exact component = {Maps} />
+          <Route path = '/maps' component = {Maps} />
           <Route path = '/dashboard' component = {Dashboard} />
           <Route path = '/account' component = {Account} />
-          <Route path = '/maps' component = {Maps} />
           <Route path = '/new-entry' component = {NewEntry} />
           <Route path = '/entries' component = {EntryList} />
         </Switch>

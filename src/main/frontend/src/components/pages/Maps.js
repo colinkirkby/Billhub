@@ -31,7 +31,6 @@ const [marker, setMarker] = React.useState([]);
     <div className="App-header">
       <header className= "App-header">
         
-        <h1>BillHub</h1>
         <div className="map-info">
 
           <GoogleMap mapContainerStyle = {mapContainerStyle}
