@@ -1,0 +1,36 @@
+/* CSS Settings that are the same for every page */
+
+.page
+{
+    background: white;
+    grid-area: main;
+    overflow-y: auto;
+}
+
+.page-container
+{
+    padding: 20px 35px;
+}
+
+.page-title
+{
+    display: flex;
+    align-items: center;
+    left: 20px;
+}
+
+.page-title > h1
+{
+    font-size: 30px;
+    color: black;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+.page-title > h2
+{
+    font-size: 24px;
+    color: black;
+    margin-bottom: 20px;
+    font-weight: 300;
+}
