@@ -64,13 +64,37 @@
                                 class="form-control btn btn-primary" value="Log In" />
                           </div>
                       </div>
-                  </div>   
+                  </div>      
              </form>
              <div class="form-group">
                     <span>New user? <a href="/" th:href="@{/registration}">Register here</a></span>
              </div>
-             </div>
+            
+<head>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="896111746806-t9h64076lkejcuv9qt5v99k7o534vt3c.apps.googleusercontent.com">
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <div class = "col-md-6 col-md-offset-2">
+              <form th:action="@{/glogin}" method="post"> </form>
+              <div class="g-signin2" data-onsuccess="onSignIn"> </div>
+    </div>
+</body>
+<body>
+<script>
+     function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log('ID: ' + profile.getId()); 
+        console.log('Name: ' + profile.getName());
+        console.log('Image URL: ' + profile.getImageUrl());
+        console.log('Email: ' + profile.getEmail()); 
+}
+</script>
+</body>
          </div>
      </div>
-</body>
+     
+     
 </html>
