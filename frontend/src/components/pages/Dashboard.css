@@ -20,6 +20,11 @@
     box-shadow: 5px 5px 13px #ededed, -5px -5px 13px white;
 }
 
+.card:hover
+{
+    box-shadow: 5px 5px 13px rgb(204, 199, 199), -5px -5px 13px white;
+}
+
 .card-button 
 {
     border: none;
@@ -30,12 +35,6 @@
     display: inline-block;
     font-size: 14px;
     cursor: pointer;
-}
-
-.card-button:hover
-{
-    background-color: rgb(214, 214, 247);
-    padding: 5px;
 }
 
 .charts

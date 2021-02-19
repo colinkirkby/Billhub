@@ -1,4 +1,5 @@
 import './App.css';
+import React, { useState } from 'react';
 import Navbar from './components/navbar/Navbar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Dashboard from './components/pages/Dashboard';
@@ -8,6 +9,7 @@ import NewEntry from './components/pages/NewEntry';
 import EntryList from './components/pages/EntryList';
 
 function App() {
+
   return (
       <Router>
         <Navbar />
