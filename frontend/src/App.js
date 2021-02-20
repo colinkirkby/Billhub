@@ -7,6 +7,7 @@ import Account from './components/pages/Account';
 import Maps from './components/pages/Maps';
 import NewEntry from './components/pages/NewEntry';
 import EntryList from './components/pages/EntryList';
+import Homepage from "./components/pages/Homepage";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Route path = '/dashboard' component = {Dashboard} />
           <Route path = '/account' component = {Account} />
           <Route path = '/new-entry' component = {NewEntry} />
+          <Route path = '/homepage' component = {Homepage} />
           <Route path = '/entries' component = {EntryList} />
         </Switch>
       </Router>
