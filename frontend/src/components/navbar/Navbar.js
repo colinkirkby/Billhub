@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaBars, FaTimes, FaHome, FaMapMarkerAlt } from 'react-icons/fa';
-import { RiMoneyDollarCircleFill, RiAccountCircleFill, RiLogoutBoxFill } from 'react-icons/ri';
+import { RiMoneyDollarCircleFill, RiAccountCircleFill, RiLogoutBoxFill, RiDashboardFill } from 'react-icons/ri';
 import './Navbar.css';
 
 function Navbar()
@@ -24,9 +24,16 @@ function Navbar()
                     
                     <nav className = {navbar ? 'nav-menu active' : 'nav-menu'}>
                         <ul className = 'nav-menu-items' onClick = {showNavbar}>
+                            <li className = 'nav-item'>
+                                <Link to = '/homepage' className = 'nav-links'>
+                                    <FaHome className = 'nav-icon' />
+                                    Home
+                                </Link>
+                            </li>
+
                             <li className = "nav-item">
                                 <Link to = '/dashboard' className = 'nav-links'>
-                                    <FaHome className = 'nav-icon' />
+                                    <RiDashboardFill className = 'nav-icon' />
                                     Dashboard
                                 </Link>
                             </li>
