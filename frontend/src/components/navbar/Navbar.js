@@ -27,14 +27,7 @@ function Navbar()
                             <li className = 'nav-item'>
                                 <Link to = '/homepage' className = 'nav-links'>
                                     <FaHome className = 'nav-icon' />
-                                    Home
-                                </Link>
-                            </li>
-
-                            <li className = "nav-item">
-                                <Link to = '/dashboard' className = 'nav-links'>
-                                    <RiDashboardFill className = 'nav-icon' />
-                                    Dashboard
+                                    BillHub Home
                                 </Link>
                             </li>
 
@@ -42,6 +35,13 @@ function Navbar()
                                 <Link to = '/maps' className = 'nav-links'>
                                     <FaMapMarkerAlt className = 'nav-icon' />
                                     Maps
+                                </Link>
+                            </li>
+
+                            <li className = "nav-item">
+                                <Link to = '/dashboard' className = 'nav-links'>
+                                    <RiDashboardFill className = 'nav-icon' />
+                                    Dashboard
                                 </Link>
                             </li>
 
