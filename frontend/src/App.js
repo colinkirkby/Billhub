@@ -8,7 +8,7 @@ import Account from './components/pages/Account';
 import Maps from './components/pages/Maps';
 import NewEntry from './components/pages/NewEntry';
 import EntryList from './components/pages/EntryList';
-import Homepage from "./components/pages/Homepage";
+import Homepage from './components/pages/Homepage';
 
 function App() {
 
@@ -18,6 +18,7 @@ function App() {
         <Switch>
           <Route path = '/homepage' component = {Homepage} />
           <Redirect exact from = '/' to = '/homepage' />
+          <Redirect exact from = '' to = '/homepage' />
           <Route path = '/maps' component = {Maps} />
           <Route path = '/account' component = {Account} />
           <Route path = '/new-entry' component = {NewEntry} />
