@@ -19,10 +19,10 @@ function App() {
           <Route path = '/homepage' component = {Homepage} />
           <Redirect exact from = '/' to = '/homepage' />
           <Route path = '/maps' component = {Maps} />
-          <Route path = '/dashboard' component = {Dashboard} />
           <Route path = '/account' component = {Account} />
           <Route path = '/new-entry' component = {NewEntry} />
           <Route path = '/entries' component = {EntryList} />
+          <Route path = '/dashboard' component = {Dashboard} />
         </Switch>
       </Router>
   );
