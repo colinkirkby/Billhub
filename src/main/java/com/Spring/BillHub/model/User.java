@@ -34,8 +34,10 @@ public class User extends AuditModel{
                     name = "user_id", referencedColumnName = "id"),   //foreign key1
             inverseJoinColumns = @JoinColumn (
                     name = "role_id", referencedColumnName = "id"))   //foreign key2
-
     private Collection<Role> roles;   //One user can have different roles
+
+    // enum for account type -> default to NOT_REGISTERED
+    private AccountType accountType = AccountType.NOT_REGISTERED;
 
     //default constructor
     public User() {}
@@ -89,4 +91,23 @@ public class User extends AuditModel{
         this.roles = roles;
     }
 
+    public AccountType getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(AccountType accountType) {
+        this.accountType = accountType;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
 }
