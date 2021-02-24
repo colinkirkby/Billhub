@@ -45,9 +45,16 @@ public class UserController {
 		return new UserRegistrationDto();
 	}
 	
-
-	@PostMapping("/registration")
-	public User registerUserAccount(@RequestBody UserRegistrationDto registrationDto) {
+	//@GetMapping
+	//public String showRegistrationForm() {
+		//return "registration";       
+	//}
+	
+	@PostMapping("/registration")      //tells spring that this method will handle post registration request
+	public User registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
+		// try {
+			// 
+		// }
 		return userService.save(registrationDto);
 	}
 	
@@ -62,4 +69,6 @@ public class UserController {
 		//return user.getFirstName();
 	}
 	
-}
+	// @PostMapping("/login")            //tells spring that this method will handle post login request
+	
+}  

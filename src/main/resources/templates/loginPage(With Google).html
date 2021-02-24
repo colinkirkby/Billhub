@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="896111746806-t9h64076lkejcuv9qt5v99k7o534vt3c.apps.googleusercontent.com">
 <meta charset="UTF-8">
 <title>BillHub Login</title>
 
@@ -69,32 +71,44 @@
              <div class="form-group">
                     <span>New user? <a href="/" th:href="@{/registration}">Register here</a></span>
              </div>
-            
-<head>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="896111746806-t9h64076lkejcuv9qt5v99k7o534vt3c.apps.googleusercontent.com">
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
-<body>
-    <div class = "col-md-6 col-md-offset-2">
-              <form th:action="@{/glogin}" method="post"> </form>
-              <div class="g-signin2" data-onsuccess="onSignIn"> </div>
-    </div>
-</body>
-<body>
-<script>
-     function onSignIn(googleUser) {
-        var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId()); 
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail()); 
-}
-</script>
-</body>
+
+                 <div class = "col-md-6 col-md-offset-2">
+                     <form th:action="@{/glogin}" method="post"> </form>
+                     <div class="g-signin2" data-onsuccess="onSignIn"> </div>
+                 </div>
+
+                 <script>
+                    function onSignIn(googleUser) {
+                    var profile = googleUser.getBasicProfile();
+                    console.log('ID: ' + profile.getId());
+                    console.log('Name: ' + profile.getName());
+                    console.log('Image URL: ' + profile.getImageUrl());
+                    console.log('Email: ' + profile.getEmail());
+
+                    var id_token = googleUser.getAuthResponse().id_token;
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '/check');
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xhr.onload = function() {
+                      console.log('Signed in as: ' + xhr.responseText);
+                    };
+                    }
+
+                </script>
+
+                 <script>
+                     if (auth2.isSignedIn.get()) {
+                        var profile = auth2.currentUser.get().getBasicProfile();
+                        console.log('ID: ' + profile.getId());
+                        console.log('Full Name: ' + profile.getName());
+                        console.log('Given Name: ' + profile.getGivenName());
+                        console.log('Family Name: ' + profile.getFamilyName());
+                        console.log('Image URL: ' + profile.getImageUrl());
+                        console.log('Email: ' + profile.getEmail());
+                     }
+                 </script>
+             </div>
          </div>
      </div>
-     
-     
+</body>
 </html>
