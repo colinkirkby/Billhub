@@ -41,14 +41,14 @@ public class UserController {
 	
 	@PostMapping("/registration")      //tells spring that this method will handle post registration request
 	public User registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
-		try {
-			
-		}
+		// try {
+			// 
+		// }
 		return userService.save(registrationDto);
 		//return "redirect:/registration?success";   //redirct to the registration page with success message, success is a flag
 	}
 	
 	
-	@PostMapping("/login")            //tells spring that this method will handle post login request
+	// @PostMapping("/login")            //tells spring that this method will handle post login request
 	
 }  
