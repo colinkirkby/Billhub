@@ -9,7 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import net.java.springboot.model.Role;
@@ -24,7 +24,7 @@ public class UserServicelmpl implements UserService{
 	private UserRepository userRepository;
 	
 	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
+//	private BCryptPasswordEncoder passwordEncoder;
 	//constructor
 	public UserServicelmpl(UserRepository userRepository) {
 		super();
@@ -34,7 +34,10 @@ public class UserServicelmpl implements UserService{
 	@Override
 	public User save(UserRegistrationDto registrationDto) { //create a new user object
 		User user = new User(registrationDto.getFirstName(), registrationDto.getLastName(), 
-				registrationDto.getEmail(), passwordEncoder.encode(registrationDto.getPassword()), Arrays.asList(new Role("ROLE_USER")));
+				registrationDto.getEmail(), 
+//				passwordEncoder.encode(registrationDto.getPassword()),
+				registrationDto.getPassword(),
+				Arrays.asList(new Role("ROLE_USER")));
 	    return userRepository.save(user);    //save the newly created object to the database
 	}
 	
@@ -51,6 +54,5 @@ public class UserServicelmpl implements UserService{
 	private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
 	}
-	
 	
 }
