@@ -10,12 +10,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,7 +29,9 @@ import net.java.springboot.service.UserService;
 import net.java.springboot.service.UserServicelmpl;
 import net.java.springboot.web.dto.UserRegistrationDto;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController         //use @controller annotation to let spring know that is class is a controller to handle html request
+@RequestMapping("/api/v1/")
 public class UserController {
      @Autowired
 	private UserService userService;
@@ -38,6 +42,7 @@ public class UserController {
 	public UserController(UserService userService) {
 		super();
 		this.userService = userService;
+		this.repository = repository;
 	}
 	
 	@ModelAttribute("user")          //annotate userRegistrationDto with "user"
@@ -45,30 +50,22 @@ public class UserController {
 		return new UserRegistrationDto();
 	}
 	
-	//@GetMapping
-	//public String showRegistrationForm() {
-		//return "registration";       
-	//}
-	
-	@PostMapping("/registration")      //tells spring that this method will handle post registration request
-	public User registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
-		// try {
-			// 
-		// }
+
+	@PostMapping("/registration")
+	public User registerUserAccount(@RequestBody UserRegistrationDto registrationDto) {
 		return userService.save(registrationDto);
 	}
 	
 		
 	@PostMapping("/login")
-    public User loadUserByUsername(@RequestBody String username) throws UsernameNotFoundException{
-		User user = repository.findByEmail(username); 
+    public String userLogin(@RequestBody UserRegistrationDto registrationDto) throws UsernameNotFoundException{
+		User user = repository.findByEmail(registrationDto.getEmail()); 
 		if(user == null) {
 			throw new UsernameNotFoundException("Invalid username or password");
 		}
-		return repository.findByEmail(username);
-		//return user.getFirstName();
+		if (user.getPassword().equals(registrationDto.getPassword()) ) {
+			return "Success";
+		}
+		else throw new UsernameNotFoundException("Invalid username or password");
 	}
-	
-	// @PostMapping("/login")            //tells spring that this method will handle post login request
-	
-}  
+}

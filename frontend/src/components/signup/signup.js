@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { Grid, Paper, Avatar, Typography, TextField, Button } from '@material-ui/core'
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import Radio from '@material-ui/core/Radio';
@@ -7,7 +7,52 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-const Signup = () => {
+import { render } from '@testing-library/react';
+import UserService from '../../UserService/UserService';
+
+
+class registerUserComponent extends Component{
+    constructor(props){
+        super(props)
+
+        this.state={
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: ''
+        }
+        this.changeFirstNameHandler = this.changeFirstNameHandler.bind(this);
+        this.changeLastNameHandler = this.changeLastNameHandler.bind(this);
+        this.changeEmailHandler = this.changeEmailHandler.bind(this);
+        this.changePasswordHandler = this.changePasswordHandler.bind(this);
+        this.saveUser = this.saveUser.bind(this);
+    }
+
+
+    saveUser = (e) =>{
+        e.preventDefault();
+        let user={firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email, password:this.state.password};
+        console.log('user => ' + JSON.stringify(user));
+        UserService.createUser(user).then(res =>{
+            //TODO, the page redirect
+        });
+
+    }
+
+    changeFirstNameHandler=(event) =>{
+        this.setState({firstName: event.target.value});
+    }
+    changeLastNameHandler=(event) =>{
+        this.setState({lastName: event.target.value});
+    }
+    changeEmailHandler=(event) =>{
+        this.setState({email: event.target.value});
+    }
+    changePasswordHandler=(event) =>{
+        this.setState({password: event.target.value});
+    }
+
+    render() {
     const paperStyle = { padding: '30px 20px', width: 300, margin: "20px auto" }
     const headerStyle = { margin: 0 }
     const avatarStyle = { backgroundColor: '#1bbd7e' }
@@ -23,17 +68,35 @@ const Signup = () => {
                     <Typography variant='caption' gutterBottom>Please fill this form to create an account !</Typography>
                 </Grid>
                 <form>
-                    <TextField fullWidth label='Email' placeholder="Enter your email" />
-                    <TextField fullWidth label='Password' placeholder="Enter your password"/>
-                    <FormControlLabel
-                        control={<Checkbox name="checkedA" />}
-                        label="I accept the terms and conditions."
-                    />
-                    <Button type='submit' variant='contained' color='primary'>Sign up</Button>
+                    <div className ="form-group">
+                        <label> First Name: </label>
+                        <input placeholder="First Name" name="firstName" className="form-control"
+                            value={this.state.firstName} onChange={this.changeFirstNameHandler}/>
+                    </div>
+                    
+                    <div className ="form-group">
+                        <label> Last Name: </label>
+                        <input placeholder="Last Name" name="lastName" className="form-control"
+                            value={this.state.lastName} onChange={this.changeLastNameHandler}/>
+                    </div>
+                    
+                    <div className ="form-group">
+                        <label> Email: </label>
+                        <input placeholder="Email Address" name="email" className="form-control"
+                            value={this.state.email} onChange={this.changeEmailHandler}/>
+                    </div>
+                    
+                    <div className ="form-group">
+                        <label> Password: </label>
+                        <input placeholder="Password" name="password" className="form-control"
+                            value={this.state.password} onChange={this.changePasswordHandler}/>
+                    </div>
+
+                    <button className="btn btn-success" onClick={this.saveUser}>Register</button>
                 </form>
             </Paper>
         </Grid>
     )
 }
-
-export default Signup;
+}
+export default registerUserComponent;
