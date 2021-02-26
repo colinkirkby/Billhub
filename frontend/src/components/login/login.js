@@ -32,10 +32,10 @@ const Login=()=>{
                         Forgot password ?
                 </Link>
                 </Typography>
-                <Typography > Do you have an account ?
-                     <Link href="#" >
+                <Typography > Don't have an account ?
+                    <Link href="/register" >
                         Sign Up 
-                </Link>
+                    </Link>
                 </Typography>
             </Paper>
         </Grid>
