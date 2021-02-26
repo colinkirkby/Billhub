@@ -1,10 +1,43 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { Grid,Paper, Avatar, TextField, Button, Typography,Link } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+/*
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-const Login=()=>{
+*/
+import LoginUserService from '../../UserService/LoginUserService';
 
+class loginUserComponent extends Component{
+    constructor(props){
+        super(props)
+
+        this.state={
+            email: '',
+            password: ''
+        }
+        this.changeEmailHandler = this.changeEmailHandler.bind(this);
+        this.changePasswordHandler = this.changePasswordHandler.bind(this);
+        this.saveUser = this.saveUser.bind(this);
+    }
+
+    saveUser = (e) =>{
+        e.preventDefault();
+        let user={email: this.state.email, password:this.state.password};
+        console.log('user => ' + JSON.stringify(user));
+        LoginUserService.checkCredential(user).then(res =>{
+            //TODO, the page redirect
+        });
+
+    }
+
+    changeEmailHandler=(event) =>{
+        this.setState({email: event.target.value});
+    }
+    changePasswordHandler=(event) =>{
+        this.setState({password: event.target.value});
+    }
+
+    render(){
     const paperStyle={padding :20,height:'70vh',width:280, margin:"20px auto"}
     const avatarStyle={backgroundColor:'#1bbd7e'}
     const btnstyle={margin:'8px 0'}
@@ -15,18 +48,21 @@ const Login=()=>{
                      <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
                     <h2>Sign In</h2>
                 </Grid>
-                <TextField label='Email' placeholder='Enter email' fullWidth required/>
-                <TextField label='Password' placeholder='Enter password' type='password' fullWidth required/>
-                <FormControlLabel
-                    control={
-                    <Checkbox
-                        name="checkedB"
-                        color="primary"
-                    />
-                    }
-                    label="Remember me"
-                 />
-                <Button type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Sign in</Button>
+                <form>                    
+                    <div className ="form-group">
+                        <label> Email: </label>
+                        <input placeholder="Email Address" name="email" className="form-control"
+                            value={this.state.email} onChange={this.changeEmailHandler}/>
+                    </div>
+                    
+                    <div className ="form-group">
+                        <label> Password: </label>
+                        <input placeholder="Password" name="password" className="form-control"
+                            value={this.state.password} onChange={this.changePasswordHandler}/>
+                    </div>
+
+                    <button className="btn btn-success" onClick={this.saveUser}>Sign In</button>
+                </form>
                 <Typography >
                      <Link href="#" >
                         Forgot password ?
@@ -41,5 +77,6 @@ const Login=()=>{
         </Grid>
     )
 }
+}
 
-export default Login
+export default loginUserComponent
