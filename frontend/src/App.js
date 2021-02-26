@@ -11,6 +11,7 @@ import EntryList from './components/pages/EntryList';
 import Homepage from "./components/pages/Homepage";
 import Loginpage from "./components/pages/Loginpage";
 import Signuppage from "./components/pages/Signuppage";
+import PrivateRoute from '../src/PrivateRoute';
 
 function App() {
 
@@ -21,12 +22,12 @@ function App() {
           <Route path = '/homepage' component = {Homepage} />
           <Redirect exact from = '/' to = '/homepage' />
           <Route path = '/maps' component = {Maps} />
-          <Route path = '/account' component = {Account} />
-          <Route path = '/new-entry' component = {NewEntry} />
-          <Route path = '/entries' component = {EntryList} />
-          <Route path = '/dashboard' component = {Dashboard} />
           <Route path = '/login' component = {Loginpage} />
           <Route path = '/register' component = {Signuppage} />
+          <PrivateRoute path = '/dashboard' loggedIn = { localStorage.getItem("access_token")} component = {Dashboard}/>
+            <Route path = '/dashboard/account' component = {Account} />
+            <Route path = '/dashboard/new-entry' component = {NewEntry} />
+            <Route path = '/dashboard/entries' component = {EntryList} />
         </Switch>
       </Router>
   );
