@@ -9,6 +9,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { render } from '@testing-library/react';
 import UserService from '../../UserService/UserService';
+import { Redirect } from 'react-router';
 
 
 class registerUserComponent extends Component{
@@ -28,16 +29,20 @@ class registerUserComponent extends Component{
         this.saveUser = this.saveUser.bind(this);
     }
 
+    logSomething = () => {
+        console.log("SAVE USER CLICK")
+    }
 
     saveUser = (e) =>{
         e.preventDefault();
         let user={firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email, password:this.state.password};
         console.log('user => ' + JSON.stringify(user));
-        UserService.createUser(user).then(res =>{
+        UserService.createUser(user).then(response =>{
             //TODO, the page redirect
         });
 
     }
+    
 
     changeFirstNameHandler=(event) =>{
         this.setState({firstName: event.target.value});
@@ -57,6 +62,9 @@ class registerUserComponent extends Component{
     const headerStyle = { margin: 0 }
     const avatarStyle = { backgroundColor: '#1bbd7e' }
     const marginTop = { marginTop: 5 }
+
+
+
     return (
         <Grid>
             <Paper elevation={20} style={paperStyle}>
@@ -93,6 +101,7 @@ class registerUserComponent extends Component{
                     </div>
 
                     <button className="btn btn-success" onClick={this.saveUser}>Register</button>
+                    {/* <button className="btn btn-success" onClick={this.logSomething}>Register</button> */}
                 </form>
             </Paper>
         </Grid>

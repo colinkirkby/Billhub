@@ -9,6 +9,9 @@ function Navbar()
 {
     const [navbar, setNavbar] = useState(false);
     const showNavbar = () => setNavbar(!navbar);
+    const logSomething = () => {
+        console.log("BUTTON CLICK")
+    }
 
     return (
         <>
@@ -38,7 +41,7 @@ function Navbar()
                                     Maps
                                 </Link>
                             </li>
-
+                            
                             <li className = "nav-item">
                                 <Link to = '/dashboard' className = 'nav-links'>
                                     <RiDashboardFill className = 'nav-icon' />

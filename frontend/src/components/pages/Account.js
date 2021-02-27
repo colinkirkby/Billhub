@@ -1,10 +1,22 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from 'axios';
 
 import './Account.css';
 import './General.css';
 
 function Account()
 {
+    const [data, setData] = useState({ hits: [] });
+    useEffect(() => {
+        const fetchData = async () => {
+            const result = await axios(
+                'https://api/v1',
+            );
+            setData(result.data);
+        };
+        fetchData();
+    }, []);
+
     return (
         <div className = 'page'>
             <div className = 'page-container container'>
@@ -15,17 +27,17 @@ function Account()
                 <table className = 'table'>
                     <tr>
                         <th row className = 'table-header'>Name:</th>
-                        <td className = 'table-data'>Tester Tester</td>
+                        <td className = 'table-data'></td>
                     </tr>
 
                     <tr className = 'separating-line'>
                         <th row className = 'table-header'>Phone Number:</th>
-                        <td className = 'table-data'>604.123.4567</td>
+                        <td className = 'table-data'></td>
                     </tr>
 
                     <tr className = 'separating-line'>
                         <th row className = 'table-header'>Email Address:</th>
-                        <td className = 'table-data'>123abc@gmail.com</td>
+                        <td className = 'table-data'></td>
                     </tr>
                 </table>
             </div>
