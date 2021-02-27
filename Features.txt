@@ -1,0 +1,12 @@
+By Feb. 26, 2021, our development team has implemented the following features:
+(1) User sign-up and sign-in
+(2) Searching city by Google-Map
+(3) Dashboard for viewing expenses break-down
+
+Features to add:
+(1) User sign-out
+(2) Viewing living cost of a city in category
+(3) Adding and deleting entries
+
+
+

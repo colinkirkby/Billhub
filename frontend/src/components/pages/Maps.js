@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GoogleMap, useLoadScript, Marker, InfoWindow, InfoBox } from '@react-google-maps/api';
+import { GoogleMap, useLoadScript, Marker, InfoWindow, } from '@react-google-maps/api';
 import mapStyles from './map_style.json'
 import usePlacesAutocomplete, {
   getGeocode,
@@ -32,7 +32,9 @@ const center = {
 const options = {
   styles: mapStyles,
   disableDefaultUI: true, 
+  clickableIcons: false,
 }
+
 
 
 function App() {
@@ -45,9 +47,18 @@ const [marker, setMarker] = React.useState([]);
 const [selected, setSelected] = React.useState(null);
 
 const mapRef = React.useRef();
-const panTo = React.useCallback(({ lat, lng }) => {
-  mapRef.current.panTo({ lat, lng });
+const onMapLoad = React.useCallback((map) => {
+  mapRef.current = map;
+}, );
+
+const panTo = React.useCallback((target) => {
+  
+  mapRef.current.panTo(target);
   mapRef.current.setZoom(14);
+  setMarker(current => [{
+    lat: target.lat,
+    lng: target.lng,
+  }])
 }, []);
  
  
@@ -68,6 +79,7 @@ const panTo = React.useCallback(({ lat, lng }) => {
           zoom = {11}
           center = {center}
           options = {options}
+          onLoad={onMapLoad}
           onClick = {(Event) =>{
             setMarker(current => [
               {
@@ -75,9 +87,7 @@ const panTo = React.useCallback(({ lat, lng }) => {
               lng: Event.latLng.lng(),
             }])
       
-         console.log(marker.lat)
-         console.log(marker.lng)
-            
+         
 
           }}> 
             {marker.map((marker) => (
@@ -102,11 +112,14 @@ const panTo = React.useCallback(({ lat, lng }) => {
               <p2>average income = {values[1]}</p2>
               <p3>average rent = {values[2]}</p3>
               <p4>data points = {values[3]}</p4>
+              {console.log(marker[0].lat)}
+              {console.log(marker[0].lng)}
+            
             </div>
-          
+            
           </InfoWindow>
         ) : null}
-
+          
           <h2>Cost Map</h2>
           </GoogleMap>
           </div>
@@ -127,26 +140,9 @@ const panTo = React.useCallback(({ lat, lng }) => {
     </div>
   );
 }
-function Locate({ panTo }) {
-  return (
-    <button
-      className="locate"
-      onClick={() => {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            panTo({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            });
-          },
-          () => null
-        );
-      }}
-    >
-      <img src="/compass.svg" alt="compass" />
-    </button>
-  );
-}
+
+
+
 function Search({ panTo }) {
   const {
     ready,
@@ -160,6 +156,7 @@ function Search({ panTo }) {
       radius: 100 * 1000,
     },
   });
+
   const handleInput = (e) => {
     setValue(e.target.value);
   };
@@ -170,8 +167,10 @@ function Search({ panTo }) {
 
     try {
       const results = await getGeocode({ address });
-      const { lat, lng } = await getLatLng(results[0]);
-      panTo({ lat, lng });
+      const target =  await getLatLng(results[0]);
+      console.log(target)
+      console.log(center)
+      panTo(target)
     } catch (error) {
       console.log("Error: ", error);
     }
