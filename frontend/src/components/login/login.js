@@ -63,16 +63,16 @@ class loginUserComponent extends Component{
 
                     <button className="btn btn-success" onClick={this.saveUser}>Sign In</button>
                 </form>
-                <Typography >
-                     <Link href="#" >
-                        Forgot password ?
-                </Link>
-                </Typography>
-                <Typography > Don't have an account ?
-                    <Link href="/register" >
-                        Sign Up 
-                    </Link>
-                </Typography>
+                // <Typography >
+                //      <Link href="#" >
+                //         Forgot password ?
+                // </Link>
+                // </Typography>
+                // <Typography > Don't have an account ?
+                //     <Link href="/register" >
+                //         Sign Up 
+                //     </Link>
+                // </Typography>
             </Paper>
         </Grid>
     )
