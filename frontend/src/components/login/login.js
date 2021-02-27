@@ -1,6 +1,9 @@
-import React, {Component} from 'react'
+import React, {Component, useState} from 'react'
+import { Redirect, Route } from "react-router-dom";
 import { Grid,Paper, Avatar, TextField, Button, Typography,Link } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Signuppage from '../pages/Signuppage';
+import axios from 'axios';
 /*
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -24,10 +27,12 @@ class loginUserComponent extends Component{
         e.preventDefault();
         let user={email: this.state.email, password:this.state.password};
         console.log('user => ' + JSON.stringify(user));
-        LoginUserService.checkCredential(user).then(res =>{
+        LoginUserService.checkCredential(user)
+            .then((response) => {
+                localStorage.setItem("access_token", "loggedIn");
+                window.location.replace("/dashboard");
             //TODO, the page redirect
         });
-
     }
 
     changeEmailHandler=(event) =>{
@@ -37,10 +42,11 @@ class loginUserComponent extends Component{
         this.setState({password: event.target.value});
     }
 
-    render(){
+    render() {
     const paperStyle={padding :20,height:'70vh',width:280, margin:"20px auto"}
     const avatarStyle={backgroundColor:'#1bbd7e'}
     const btnstyle={margin:'8px 0'}
+
     return(
         <Grid>
             <Paper elevation={10} style={paperStyle}>
@@ -63,16 +69,18 @@ class loginUserComponent extends Component{
 
                     <button className="btn btn-success" onClick={this.saveUser}>Sign In</button>
                 </form>
-                <Typography >
-                     <Link href="#" >
-                        Forgot password ?
-                </Link>
-                </Typography>
-                <Typography > Don't have an account ?
-                    <Link href="/register" >
-                        Sign Up 
-                    </Link>
-                </Typography>
+
+                {/* <Typography > */}
+                     {/* <Link href="#" > */}
+                        {/* Forgot password ? */}
+                    {/* </Link> */}
+                {/* </Typography> */}
+                {/* <Typography > Don't have an account ? */}
+                    {/* <Link to = '/register' className = 'button-link'> */}
+                        {/* <Button>Register Here</Button> */}
+                    {/* </Link> */}
+                {/* </Typography> */}
+                {/* <Link to = '/register'>Sign Up</Link> */}
             </Paper>
         </Grid>
     )
