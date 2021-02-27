@@ -1,13 +1,11 @@
 import React, {Component, useState} from 'react'
-import { Redirect, Route } from "react-router-dom";
 import { Grid,Paper, Avatar, TextField, Button, Typography,Link } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Signuppage from '../pages/Signuppage';
-import axios from 'axios';
-/*
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-*/
+// import Signuppage from '../pages/Signuppage';
+// import { Redirect, Route } from "react-router-dom";
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Checkbox from '@material-ui/core/Checkbox';
+
 import LoginUserService from '../../UserService/LoginUserService';
 
 class loginUserComponent extends Component{
@@ -31,7 +29,6 @@ class loginUserComponent extends Component{
             .then((response) => {
                 localStorage.setItem("access_token", "loggedIn");
                 window.location.replace("/dashboard");
-            //TODO, the page redirect
         });
     }
 
@@ -70,17 +67,13 @@ class loginUserComponent extends Component{
                     <button className="btn btn-success" onClick={this.saveUser}>Sign In</button>
                 </form>
 
+                <Typography> Don't have an account? Check out the "Register" tab!</Typography>
+
                 {/* <Typography > */}
                      {/* <Link href="#" > */}
                         {/* Forgot password ? */}
                     {/* </Link> */}
                 {/* </Typography> */}
-                {/* <Typography > Don't have an account ? */}
-                    {/* <Link to = '/register' className = 'button-link'> */}
-                        {/* <Button>Register Here</Button> */}
-                    {/* </Link> */}
-                {/* </Typography> */}
-                {/* <Link to = '/register'>Sign Up</Link> */}
             </Paper>
         </Grid>
     )

@@ -3,15 +3,23 @@ import { Link } from 'react-router-dom';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { FaBars, FaTimes, FaHome, FaMapMarkerAlt } from 'react-icons/fa';
 import { RiMoneyDollarCircleFill, RiAccountCircleFill, RiLoginBoxFill, RiLogoutBoxFill, RiDashboardFill } from 'react-icons/ri';
+// import '../../PrivateRoute';
 import './Navbar.css';
 
 function Navbar()
 {
     const [navbar, setNavbar] = useState(false);
     const showNavbar = () => setNavbar(!navbar);
-    const logSomething = () => {
-        console.log("BUTTON CLICK")
-    }
+
+
+
+    // DEBUG FUNCTION
+    // const logSomething = () => {
+        // console.log("BUTTON CLICK")
+    // }
+    // 
+
+
 
     return (
         <>
@@ -49,19 +57,12 @@ function Navbar()
                                 </Link>
                             </li>
 
-                            <li className = 'nav-item'>
-                                <Link to = '/account' className = 'nav-links'>
-                                    <RiAccountCircleFill className = 'nav-icon' />
-                                    Account
-                                </Link>
-                            </li>
-
-                            <li className = 'nav-item'>
-                                <Link to = '/register' className = 'nav-links'>
-                                    <AiFillPlusCircle className = 'nav-icon' />
-                                    Sign Up
-                                </Link>
-                            </li>
+                            {/* <li className = 'nav-item'> */}
+                                {/* <Link to = '/account' className = 'nav-links'> */}
+                                    {/* <RiAccountCircleFill className = 'nav-icon' /> */}
+                                    {/* Account */}
+                                {/* </Link> */}
+                            {/* </li> */}
 
                             <li className = 'nav-item'>
                                 <Link to = '/login' className = 'nav-links'>
@@ -69,7 +70,7 @@ function Navbar()
                                     Sign In
                                 </Link>
                             </li>
-
+                            
                             <li className = 'nav-item'>
                                 <Link to = '/' className = 'nav-links'>
                                     <RiLogoutBoxFill className = 'nav-icon' />
@@ -77,6 +78,12 @@ function Navbar()
                                 </Link>
                             </li>
 
+                            <li className = 'nav-item'>
+                                <Link to = '/register' className = 'nav-links'>
+                                    <AiFillPlusCircle className = 'nav-icon' />
+                                    Register
+                                </Link>
+                            </li>
                         </ul>
                     </nav>
                 </div>
