@@ -51,7 +51,7 @@ public class UserController {
 	}
 	
 
-	@PostMapping("/register")
+	@PostMapping("/registration")
 	public User registerUserAccount(@RequestBody UserRegistrationDto registrationDto) {
 		return userService.save(registrationDto);
 	}
