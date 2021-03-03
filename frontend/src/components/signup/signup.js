@@ -8,7 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { render } from '@testing-library/react';
-import UserService from '../../UserService/UserService';
+import UserService from '../../UserService';
 import { Redirect } from 'react-router';
 
 class registerUserComponent extends Component{

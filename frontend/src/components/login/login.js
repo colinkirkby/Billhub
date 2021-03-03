@@ -6,7 +6,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 // import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import Checkbox from '@material-ui/core/Checkbox';
 
-import LoginUserService from '../../UserService/LoginUserService';
+import UserService from '../../UserService';
 
 class loginUserComponent extends Component{
     constructor(props){
@@ -25,7 +25,7 @@ class loginUserComponent extends Component{
         e.preventDefault();
         let user={email: this.state.email, password:this.state.password};
         console.log('user => ' + JSON.stringify(user));
-        LoginUserService.checkCredential(user)
+        UserService.checkCredential(user)
             .then((response) => {
                 localStorage.setItem("access_token", "loggedIn");
                 window.location.replace("/dashboard");
