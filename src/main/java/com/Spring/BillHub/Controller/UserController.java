@@ -1,4 +1,4 @@
-package net.java.springboot.web;
+package com.Spring.BillHub.Controller;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
@@ -25,13 +25,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Spring.BillHub.dto.UserRegistrationDto;
+import com.Spring.BillHub.model.User;
+import com.Spring.BillHub.repo.UserRepo;
+import com.Spring.BillHub.service.UserService;
+
 import ch.qos.logback.classic.Logger;
-import net.java.springboot.model.Role;
-import net.java.springboot.model.User;
-import net.java.springboot.repository.UserRepository;
-import net.java.springboot.service.UserService;
-import net.java.springboot.service.UserServicelmpl;
-import net.java.springboot.web.dto.UserRegistrationDto;
+
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController         //use @controller annotation to let spring know that is class is a controller to handle html request
@@ -40,13 +40,13 @@ public class UserController {
      @Autowired
 	private UserService userService;
      @Autowired
-	private UserRepository repository;
+	private UserRepo repository;
 
 	//constructor
 	public UserController(UserService userService) {
 		super();
 		this.userService = userService;
-		this.repository = repository;
+		//this.repository = repository;
 	}
 	
 	@ModelAttribute("user")          //annotate userRegistrationDto with "user"

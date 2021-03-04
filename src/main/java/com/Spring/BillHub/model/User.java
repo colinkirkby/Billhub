@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "TESTING")       //This tells Hibernate the name of table is called "user"
+@Table(name = "TESTING")       //This tells Hibernate the name of table is called "Testing"
 public class User extends AuditModel{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)   //use id as a primary key

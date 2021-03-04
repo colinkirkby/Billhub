@@ -1,4 +1,4 @@
-package net.java.springboot.service;
+package com.Spring.BillHub.service;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -12,21 +12,26 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import net.java.springboot.model.Role;
-import net.java.springboot.model.User;
-import net.java.springboot.repository.UserRepository;
-import net.java.springboot.web.dto.UserRegistrationDto;
+import com.Spring.BillHub.dto.UserRegistrationDto;
+import com.Spring.BillHub.model.Role;
+import com.Spring.BillHub.model.User;
+import com.Spring.BillHub.repo.UserRepo;
+
+//import net.java.springboot.model.Role;
+//import net.java.springboot.model.User;
+//import net.java.springboot.repository.UserRepository;
+//import net.java.springboot.web.dto.UserRegistrationDto;
 
 
 @Service
 public class UserServicelmpl implements UserService{
     @Autowired
-	private UserRepository userRepository;
+	private UserRepo userRepository;
 	
 	@Autowired
 //	private BCryptPasswordEncoder passwordEncoder;
 	//constructor
-	public UserServicelmpl(UserRepository userRepository) {
+	public UserServicelmpl(UserRepo userRepository) {
 		super();
 		this.userRepository = userRepository;
 	}
