@@ -1,4 +1,4 @@
-package com.Spring.BillHub.token;
+package com.Spring.BillHub.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

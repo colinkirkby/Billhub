@@ -22,10 +22,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     {
         security
                 .antMatcher("/**").authorizeRequests()
-                .antMatchers("/").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .oauth2Login();
+                .antMatchers("/").permitAll();
+//                .anyRequest().authenticated()
+//                .and()
+//                .oauth2Login();
 
         security.httpBasic().disable();
         security.cors().and().csrf().disable();

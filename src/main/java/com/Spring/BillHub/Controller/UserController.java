@@ -34,7 +34,7 @@ import ch.qos.logback.classic.Logger;
 
 
 @CrossOrigin(origins = "http://localhost:3000")
-@RestController         //use @controller annotation to let spring know that is class is a controller to handle html request
+@RestController        
 @RequestMapping("/api/v1/")
 public class UserController {
      @Autowired
@@ -46,7 +46,7 @@ public class UserController {
 	public UserController(UserService userService) {
 		super();
 		this.userService = userService;
-		//this.repository = repository;
+		this.repository = repository;
 	}
 	
 	@ModelAttribute("user")          //annotate userRegistrationDto with "user"

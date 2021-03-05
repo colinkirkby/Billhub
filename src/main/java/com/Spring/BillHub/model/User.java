@@ -1,13 +1,6 @@
 package com.Spring.BillHub.model;
 
 import javax.persistence.*;
-
-import com.nimbusds.jose.Algorithm;
-import com.nimbusds.jwt.JWT;
-
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-
 import java.util.Collection;
 
 @Entity
@@ -107,12 +100,6 @@ public class User extends AuditModel{
     }
 
     
-    //The way that a token is created
-    private static final String JWTSECRET = "myScrect";
-    public String getToken(User user) {
-        String token= Jwts.builder().setSubject(user.getEmail()).setExpiration(null).signWith(SignatureAlgorithm.HS512, JWTSECRET).compact();
-        return token;
-    }
     
     @Override
     public String toString() {
