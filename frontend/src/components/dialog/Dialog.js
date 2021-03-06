@@ -33,7 +33,7 @@ color: #141414;
 
 const Button1 = styled.button`
   min-width: 100px;
-  padding: 16px 32px;
+  padding: 16px 39px;
   border-radius: 4px;
   border: none;
   background: #1c2237;
@@ -51,7 +51,7 @@ const Button2 = styled.button`
   color: #fff;
   font-size: 11px;
   cursor: pointer;
-  transform: translate(1050%, -1670%);
+  transform: translate(840%, -1320%);
 `;
 
 const Header = styled.h1`
@@ -71,8 +71,8 @@ const customStyles = {
       left: '50%',
       right: 'auto',
       bottom: 'auto',
-      width: '450px',
-      height: '500px',
+      width: '370px',
+      height: '450px',
       boxshadow: '0 5px 16px rgba(0, 0, 0, 0.2)',
       background: '#eee',
       color: '#eee',
@@ -125,9 +125,9 @@ return(
           >
                <animated.div style = {animation}>
             <Container>
-                <Header>New Transaction</Header>
+                <Header></Header>
                 <div >
-                <Subhead>catagory</Subhead>
+                <Subhead>Catagory</Subhead>
                 <Select options = {options}
                   onChange={(value) => setCatagory(value.label)}
                   autoFocus = {true}
