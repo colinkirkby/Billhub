@@ -2,6 +2,7 @@ import React from 'react';
 import '../../App.css';
 import HomeSection from '../HomeSection/HomeSection';
 
+
 function Home() {
   return (
     <>
