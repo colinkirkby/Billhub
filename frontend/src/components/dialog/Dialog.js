@@ -99,10 +99,11 @@ const handleSubmit = (e) => {
 } 
 
 var inputs = [] 
-const [amount,setAmount] = useState();
-const [name,setName] = useState();
-const [catagory,setCatagory]= useState();
+const [amount,setAmount] = useState(null);
+const [name,setName] = useState(null);
+const [catagory,setCatagory]= useState(null);
 const [modalIsOpen , setModalIsOpen] = useState(false);  
+const [buttonisactive, setButtonisactive] = useState(true);
 const animation = useSpring({
   config: {
     duration: 250
@@ -156,7 +157,7 @@ return(
                 </div>
                 </div>
                 <Button2 onClick= {() => setModalIsOpen( false)}>x</Button2>
-                <Button1 onClick= {() => closeAndSubmit()}>Add Transaction</Button1>
+                <Button1 onClick= {() => closeAndSubmit() } >Add Transaction</Button1>
             </Container>
             </animated.div>
           </Modal>
@@ -165,12 +166,19 @@ return(
 
 );
 function closeAndSubmit(){
-  inputs[0] = amount;
-  inputs[1] = name;
-  inputs[2] = catagory;
-    setModalIsOpen(false);
-    console.log(inputs);
-    axios.post(TRANSACTION_API_BASE_URL,inputs);
+  if (amount != null && name != null && name != null){ 
+    inputs[0] = amount;
+    inputs[1] = name;
+    inputs[2] = catagory;
+    
+      setModalIsOpen(false);
+      console.log(inputs);
+      axios.post(TRANSACTION_API_BASE_URL,inputs);
+     setAmount(null);
+     setName(null);
+     setCatagory(null);
+    
+  }
 }
 }
 function handleChange(selected){

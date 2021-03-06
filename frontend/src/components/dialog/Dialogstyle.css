@@ -9,6 +9,7 @@
     font-size: 20px;
     font-weight: 400;
     line-height: normal;
+    outline-color: rgb(68, 124, 245);
     background-color: white;
     color: #282828;
     
@@ -27,6 +28,7 @@
     font-size: 20px;
     font-weight: 400;
     line-height: normal;
+    outline-color: rgb(68, 124, 245);
     background-color: white;
     color: #282828;
     
@@ -45,6 +47,7 @@
     font-size: 20px;
     font-weight: 400;
     line-height: normal;
+    outline: rgb(68, 124, 245);
     background-color: white;
     color: #282828;
     
