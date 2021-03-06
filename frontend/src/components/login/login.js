@@ -25,11 +25,15 @@ class loginUserComponent extends Component{
         e.preventDefault();
         let user={email: this.state.email, password:this.state.password};
         console.log('user => ' + JSON.stringify(user));
-        UserService.checkCredential(user)
-            .then((response) => {
-                localStorage.setItem("access_token", "loggedIn");
-                window.location.replace("/dashboard");
-        });
+        if (UserService.checkCredential(user) == true)
+        {
+            window.location.hash = "#!login";
+        }
+
+        else
+        {
+            window.alert("Invalid username or password. Please try again!");
+        }
     }
 
     changeEmailHandler=(event) =>{

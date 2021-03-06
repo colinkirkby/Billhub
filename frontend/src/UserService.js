@@ -8,7 +8,6 @@ const LOGIN_API = "http://localhost:8080/api/v1/login";
 // *** Input correct URLs once they're ready *** //
 // const ACCOUNT_API = "http://localhost:8080/api/v1";
 // const DATA_API = "http://localhost:8080/api/v1";
-
 class UserService{
     
     // *** Save a new user into the database *** //
@@ -18,7 +17,17 @@ class UserService{
 
     // *** Check if email and password entered on login are stored in the database *** //
     checkCredential(user){
-        return axios.post(LOGIN_API, user);
+        var jsonResponse = axios.post(LOGIN_API, user);
+        if (jsonResponse.token == undefined)
+        {
+            console.log("ERROR: invalid credentials");
+            return false;
+        }
+
+        else
+        {
+            return true;
+        }
     }
 
     // *** Retrieve user account information from the database *** //
