@@ -25,11 +25,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Spring.BillHub.annotation.UserLoginToken;
 import com.Spring.BillHub.dto.UserRegistrationDto;
 import com.Spring.BillHub.model.User;
 import com.Spring.BillHub.repo.UserRepo;
+import com.Spring.BillHub.service.TokenService;
 import com.Spring.BillHub.service.UserService;
-
+import com.alibaba.fastjson.JSONObject;
 import ch.qos.logback.classic.Logger;
 
 
@@ -41,6 +43,8 @@ public class UserController {
 	private UserService userService;
      @Autowired
 	private UserRepo repository;
+     @Autowired
+    private TokenService tokenService;
 
 	//constructor
 	public UserController(UserService userService) {
@@ -62,14 +66,32 @@ public class UserController {
 	
 		
 	@PostMapping("/login")
-    public String userLogin(@RequestBody UserRegistrationDto registrationDto) throws UsernameNotFoundException{
+    public Object userLogin(@RequestBody UserRegistrationDto registrationDto) throws UsernameNotFoundException{
+		JSONObject jsonObject = new JSONObject();
 		User user = repository.findByEmail(registrationDto.getEmail()); 
 		if (user == null) {
-			throw new UsernameNotFoundException("Invalid username or password");
+			jsonObject.put("message", "login-failed, invalid username");
+			return jsonObject;
 		}
-		if (user.getPassword().equals(registrationDto.getPassword()) ) {
-			return "Success";
+		else {
+			if (user.getPassword().equals(registrationDto.getPassword()) ) {
+				String token = tokenService.getToken(user);
+				jsonObject.put("token", token);
+				jsonObject.put("user", user);
+				return jsonObject;
+			}
+			else {
+				jsonObject.put("message", "Invalid username or password"); 
+				return jsonObject;
+			}
 		}
-		else throw new UsernameNotFoundException("Invalid username or password");
+		
+	}
+	
+	//This section is for testing only!
+	@UserLoginToken
+	@GetMapping("/dashboard")
+	public String getMessage() {
+		return "Welcome to BillHub!";
 	}
 }
