@@ -24,8 +24,9 @@ function App() {
           <Route path = '/maps' component = {Maps} />
           <Route path = '/login' component = {Loginpage} />
           <Route path = '/register' component = {Signuppage} />
+          <Route path = '/account' component = {Account} />
           <PrivateRoute path = '/dashboard' loggedIn = { localStorage.getItem("access_token")} component = {Dashboard}/>
-            <Route path = '/dashboard/account' component = {Account} />
+            {/* <Route path = '/dashboard/account' component = {Account} /> */}
             <Route path = '/dashboard/new-entry' component = {NewEntry} />
             <Route path = '/dashboard/entries' component = {EntryList} />
         </Switch>

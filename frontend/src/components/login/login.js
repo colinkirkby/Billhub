@@ -23,11 +23,25 @@ class loginUserComponent extends Component{
 
     saveUser = (e) =>{
         e.preventDefault();
+        if (this.state.email == '')
+        {
+            window.alert("Email cannot be empty");
+            return;
+        }
+
+        if (this.state.password == '')
+        {
+            window.alert("Password cannot be empty");
+            return;
+        }
+
         let user={email: this.state.email, password:this.state.password};
+
+
         console.log('user => ' + JSON.stringify(user));
         if (UserService.checkCredential(user) == true)
         {
-            window.location.hash = "#!login";
+            window.location.href = "/dashboard";
         }
 
         else
