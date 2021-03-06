@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import axios from 'axios';
 import CurrencyInput from "react-currency-input-field";
 import Select from 'react-select';
+import {useSpring, animated} from 'react-spring'
 import "./Dialogstyle.css"
 
 const TRANSACTION_API_BASE_URL = "http://localhost:8080/api/v1/newtrans";
@@ -11,9 +12,8 @@ const TRANSACTION_API_BASE_URL = "http://localhost:8080/api/v1/newtrans";
 const customStyles2 = {
   option: (provided, state) => ({
     ...provided,
-    borderBottom: '2px dotted green',
-    color: state.isSelected ? 'yellow' : 'black',
-    backgroundColor: state.isSelected ? 'green' : 'white'
+    
+    
   }),
   control: (provided) => ({
     ...provided,
@@ -43,19 +43,19 @@ const Button1 = styled.button`
 `;
 
 const Button2 = styled.button`
-  min-width: 50px;
-  padding: 8px 22px;
+  min-width: 20px;
+  padding: 5px 5px;
   border-radius: 4px;
   border: none;
   background: #1c2237;
   color: #fff;
-  font-size: 14px;
+  font-size: 11px;
   cursor: pointer;
-  transform: translate(360%, -1030%);
+  transform: translate(1050%, -1670%);
 `;
 
 const Header = styled.h1`
-transform: translate(0%,-20%);
+transform: translate(0%,-5%);
 font-size: 45px;
 
 `
@@ -92,6 +92,7 @@ const options = [
 ]
 
 function Dialog (props) {
+
 const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -102,54 +103,66 @@ const [amount,setAmount] = useState();
 const [name,setName] = useState();
 const [catagory,setCatagory]= useState();
 const [modalIsOpen , setModalIsOpen] = useState(false);  
+const animation = useSpring({
+  config: {
+    duration: 250
+  },
+  opacity: modalIsOpen ? 1 : 0,
+});
 
 
-    return(
+
+return( 
     <div>
+      
         <Button1 onClick= {() => setModalIsOpen( true)}>Add Transaction</Button1>
-            
-        <Modal 
-        isOpen= {modalIsOpen} 
-        onRequestClose = {() => setModalIsOpen(false)}
-        style = {customStyles}
-        ariaHideApp={false}
-        >
-        <Container>
-            <Header>New Transaction</Header>
-            <div >
-            <Subhead>catagory</Subhead>
-            <Select options = {options}
-              onChange={(value) => setCatagory(value.label)}
-              autoFocus = {true}
-              styles = {customStyles2}
-            >
-            </Select>
-            <Subhead>Amount</Subhead>
-            <div >
-            <CurrencyInput className = "currency"
-            id = "amount"
-            name = "input-amount"
-            placeholder = "enter amount"
-            decimalsLimit = {2}
-            onValueChange = {(value, name) => setAmount(value)}
-            />
-            </div>
-            <Subhead>Name</Subhead>
-            <div >
-              <form >                
-                  
-                  <input type='text'
-                  onChange={e => setName(e.target.value)}
-                  placeholder = "enter name"
-                  className = "nameform" />
-              </form>
-            </div>
-            </div>
-            <Button2 onClick= {() => setModalIsOpen( false)}>x</Button2>
-            <Button1 onClick= {() => closeAndSubmit()}>Add Transaction</Button1>
-        </Container>
-</Modal>
-</div>
+       
+          <Modal 
+          isOpen= {modalIsOpen} 
+          onRequestClose = {() => setModalIsOpen(false)}
+          style = {customStyles}
+          ariaHideApp={false}
+          >
+               <animated.div style = {animation}>
+            <Container>
+                <Header>New Transaction</Header>
+                <div >
+                <Subhead>catagory</Subhead>
+                <Select options = {options}
+                  onChange={(value) => setCatagory(value.label)}
+                  autoFocus = {true}
+                  styles = {customStyles2}
+                >
+                </Select>
+                <Subhead>Amount</Subhead>
+                <div >
+                <CurrencyInput className = "currency"
+                id = "amount"
+                name = "input-amount"
+                placeholder = "enter amount"
+                decimalsLimit = {2}
+                onValueChange = {(value, name) => setAmount(value)}
+                />
+                </div>
+                <Subhead>Name</Subhead>
+                <div >
+                  <form >                
+                      
+                      <input type='text'
+                      onChange={e => setName(e.target.value)}
+                      placeholder = "enter name"
+                      className = "nameform" />
+                  </form>
+                </div>
+                </div>
+                <Button2 onClick= {() => setModalIsOpen( false)}>x</Button2>
+                <Button1 onClick= {() => closeAndSubmit()}>Add Transaction</Button1>
+            </Container>
+            </animated.div>
+          </Modal>
+          
+      </div>
+
 );
 function closeAndSubmit(){
   inputs[0] = amount;
