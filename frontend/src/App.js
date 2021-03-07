@@ -14,7 +14,6 @@ import Signuppage from "./components/pages/Signuppage";
 import PrivateRoute from '../src/PrivateRoute';
 
 function App() {
-
   return (
       <Router>
         <Navbar />
@@ -24,7 +23,7 @@ function App() {
           <Route path = '/maps' component = {Maps} />
           <Route path = '/login' component = {Loginpage} />
           <Route path = '/register' component = {Signuppage} />
-          <PrivateRoute path = '/dashboard' loggedIn = { localStorage.getItem("access_token")} component = {Dashboard}/>
+          <PrivateRoute path = '/dashboard' loggedIn = { sessionStorage.getItem("access_token")} component = {Dashboard}/>
             <Route path = '/dashboard/account' component = {Account} />
             <Route path = '/dashboard/new-entry' component = {NewEntry} />
             <Route path = '/dashboard/entries' component = {EntryList} />

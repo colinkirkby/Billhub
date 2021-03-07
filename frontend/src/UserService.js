@@ -40,7 +40,7 @@ class UserService{
         else
         {
             console.log(jsonResponse.token);
-            localStorage.setItem("access_token", jsonResponse.token);
+            sessionStorage.setItem("access_token", jsonResponse.token);
             return true;
         }
         */

@@ -46,7 +46,7 @@ class loginUserComponent extends Component{
                 if (res.data.message=="Success"){
                     console.log(res.data.message);
                     const {token} = res.data.token;
-                    localStorage.setItem("access_token", token);
+                    sessionStorage.setItem("access_token", token);
                     window.location.replace("/dashboard");
                 }
                 else{

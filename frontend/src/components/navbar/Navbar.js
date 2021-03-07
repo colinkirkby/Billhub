@@ -12,7 +12,7 @@ function Navbar()
     const showNavbar = () => setNavbar(!navbar);
 
     function removeLoginToken() {
-        localStorage.clear();
+        sessionStorage.clear();
     }
 
     // DEBUG FUNCTION
