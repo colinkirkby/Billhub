@@ -4,6 +4,11 @@ import { Button } from '../button/Button';
 import './HomeSection.css';
 
 function HomeSection() {
+  
+  function redirectToRegister() {
+    window.location.replace('/register');
+  }
+  
   return (
     <div className='home-container'>
       <h1>The Future of Your Finance</h1>
@@ -13,6 +18,7 @@ function HomeSection() {
           className='btns'
           buttonStyle='btn--outline'
           buttonSize='btn--large'
+          onClick = {() => redirectToRegister()}
         >
           GET STARTED
         </Button>

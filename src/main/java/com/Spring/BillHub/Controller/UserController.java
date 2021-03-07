@@ -1,29 +1,28 @@
 package com.Spring.BillHub.Controller;
 
-import java.util.Collection;
-import java.util.stream.Collectors;
-
-import javax.servlet.http.HttpServletRequest;
+// import java.util.Collection;
+// import java.util.stream.Collectors;
+// import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+// import org.springframework.security.core.GrantedAuthority;
+// import org.springframework.security.core.authority.SimpleGrantedAuthority;
+// import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+// import org.springframework.stereotype.Controller;
+// import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
+// import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+// import org.springframework.web.bind.annotation.RequestMethod;
+// import org.springframework.web.bind.annotation.RequestParam;
+// import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
+// import org.springframework.web.servlet.ModelAndView;
 
 import com.Spring.BillHub.annotation.UserLoginToken;
 import com.Spring.BillHub.dto.UserRegistrationDto;
@@ -32,7 +31,7 @@ import com.Spring.BillHub.repo.UserRepo;
 import com.Spring.BillHub.service.TokenService;
 import com.Spring.BillHub.service.UserService;
 import com.alibaba.fastjson.JSONObject;
-import ch.qos.logback.classic.Logger;
+// import ch.qos.logback.classic.Logger;
 
 
 @CrossOrigin(origins = "http://localhost:3000")

@@ -1,6 +1,8 @@
 import React, {Component, useState} from 'react'
-import { Grid,Paper, Avatar, TextField, Button, Typography,Link } from '@material-ui/core'
+import { Grid,Paper, Avatar, TextField, Button, Typography } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import '../../components/pages/General.css';
+
 // import Signuppage from '../pages/Signuppage';
 // import { Redirect, Route } from "react-router-dom";
 // import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -60,6 +62,10 @@ class loginUserComponent extends Component{
         this.setState({password: event.target.value});
     }
 
+    redirectToRegister = (event) => {
+        window.location.replace('/register');
+    }
+
     render() {
     const paperStyle={padding :20,height:'40vh',width:280, margin:"20px auto"}
     const avatarStyle={backgroundColor:'#1bbd7e'}
@@ -72,8 +78,8 @@ class loginUserComponent extends Component{
                      <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
                     <h2>Sign In</h2>
                 </Grid>
-                <form>                    
-                    <div className ="form-group">
+                <form align = 'center'>                    
+                    <div className ="form-group" display = 'flex'>
                         <TextField label="Email" placeholder="Email Address" name="email" className="form-control"
                             value={this.state.email} onChange={this.changeEmailHandler} fullWidth required/>
                     </div>
@@ -83,16 +89,33 @@ class loginUserComponent extends Component{
                             value={this.state.password} onChange={this.changePasswordHandler} fullWidth required/>
                     </div>
 
-                    <Button className="btn btn-success" onClick={this.saveUser} type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Sign In</Button>
+                    <Button 
+                        className="btn btn-success" 
+                        onClick={this.saveUser} 
+                        type='submit' 
+                        color='primary' 
+                        variant="contained" 
+                        style={btnstyle} 
+                        fullWidth
+                    >
+                        Sign In
+                    </Button>
                 </form>
-
-                <Typography> Don't have an account? Check out the "Register" tab!</Typography>
-
-                {/* <Typography > */}
-                     {/* <Link href="#" > */}
-                        {/* Forgot password ? */}
-                    {/* </Link> */}
-                {/* </Typography> */}
+                
+                <br/>
+                <br/>
+                
+                <Typography align = 'center'> Don't have an account?
+                    <Button 
+                        className = 'btns'
+                        buttonStyle = 'btn--outline'
+                        buttonSize = 'btn--small'
+                        noWrap
+                        onClick = {this.redirectToRegister}
+                    >
+                        Register here!    
+                    </Button>
+                </Typography>
             </Paper>
         </Grid>
     )

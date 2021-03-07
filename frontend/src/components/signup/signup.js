@@ -59,6 +59,10 @@ class registerUserComponent extends Component{
         this.setState({password: event.target.value});
     }
 
+    redirectToLogin = (event) => {
+        window.location.replace('/login');
+    }
+
     render() {
         const paperStyle = { padding: '30px 20px', width: 300, margin: "20px auto" }
         const headerStyle = { margin: 0 }
@@ -99,6 +103,21 @@ class registerUserComponent extends Component{
     
                         <Button className="btn btn-success" onClick={this.saveUser} type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Register</Button>
                     </form>
+
+                    <br/>
+                    <br/>
+
+                    <Typography align = 'center'> Already have an account?
+                    <Button 
+                        className = 'btns'
+                        buttonStyle = 'btn--outline'
+                        buttonSize = 'btn--small'
+                        noWrap
+                        onClick = {this.redirectToLogin}
+                    >
+                        Login here!    
+                    </Button>
+                </Typography>
             </Paper>
         </Grid>
     )
