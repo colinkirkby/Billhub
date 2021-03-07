@@ -58,7 +58,7 @@ class loginUserComponent extends Component{
     }
 
     render() {
-    const paperStyle={padding :20,height:'70vh',width:280, margin:"20px auto"}
+    const paperStyle={padding :20,height:'40vh',width:280, margin:"20px auto"}
     const avatarStyle={backgroundColor:'#1bbd7e'}
     const btnstyle={margin:'8px 0'}
 
@@ -71,18 +71,16 @@ class loginUserComponent extends Component{
                 </Grid>
                 <form>                    
                     <div className ="form-group">
-                        <label> Email: </label>
-                        <input placeholder="Email Address" name="email" className="form-control"
-                            value={this.state.email} onChange={this.changeEmailHandler}/>
+                        <TextField label="Email" placeholder="Email Address" name="email" className="form-control"
+                            value={this.state.email} onChange={this.changeEmailHandler} fullWidth required/>
                     </div>
                     
                     <div className ="form-group">
-                        <label> Password: </label>
-                        <input placeholder="Password" name="password" className="form-control"
-                            value={this.state.password} onChange={this.changePasswordHandler}/>
+                        <TextField label="Password" placeholder="Password" name="password" className="form-control"
+                            value={this.state.password} onChange={this.changePasswordHandler} fullWidth required/>
                     </div>
 
-                    <button className="btn btn-success" onClick={this.saveUser}>Sign In</button>
+                    <Button className="btn btn-success" onClick={this.saveUser} type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Sign In</Button>
                 </form>
 
                 <Typography> Don't have an account? Check out the "Register" tab!</Typography>
