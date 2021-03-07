@@ -36,8 +36,13 @@ class registerUserComponent extends Component{
         e.preventDefault();
         let user={firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email, password:this.state.password};
         console.log('user => ' + JSON.stringify(user));
-        UserService.createUser(user).then(response =>{
-            window.location.replace("/login");
+        UserService.createUser(user)
+            .then(res =>{
+                window.location.replace("/login");
+        })
+            .catch(err=>{
+                console.log(err);
+                window.alert("The email has been registered.");
         });
     }
 
