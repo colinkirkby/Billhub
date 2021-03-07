@@ -39,15 +39,18 @@ class loginUserComponent extends Component{
 
 
         console.log('user => ' + JSON.stringify(user));
-        if (UserService.checkCredential(user) == true)
-        {
-            window.location.href = "/dashboard";
-        }
-
-        else
-        {
-            window.alert("Invalid username or password. Please try again!");
-        }
+        UserService.checkCredential(user)
+            .then(res => {
+                if (res.data.message=="Success"){
+                    console.log(res.data.message);
+                    const {token} = res.data.token;
+                    localStorage.setItem("access_token", token);
+                    window.location.replace("/dashboard");
+                }
+                else{
+                    window.alert("Invalid username or password. Please try again!");
+                }
+        });
     }
 
     changeEmailHandler=(event) =>{

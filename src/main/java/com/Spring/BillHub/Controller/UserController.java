@@ -78,6 +78,7 @@ public class UserController {
 				String token = tokenService.getToken(user);
 				jsonObject.put("token", token);
 				jsonObject.put("user", user);
+				jsonObject.put("message", "Success");
 				return jsonObject;
 			}
 			else {
