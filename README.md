@@ -1,6 +1,4 @@
 How to run:
-* Currently, web security (same-origin policy) must be disabled in order for the login system to work. We are looking at a solution, though it will not be implemented in time for the Iteration 1 submission. To disable web security on Chrome, once the billhub application has been downloaded please run the following command in your Linux terminal: google-chrome --disable-web-security --user-data-dir="[billhub]". For other terminal commands please refer to this article: https://stackoverflow.com/questions/3102819/disable-same-origin-policy-in-chrome *
-
 Go to BillhubApplication.java and run the program (back-end). Then move into the BillHub directory and run the following command: “npm start” which would then launch the front end of the website.
 
 
