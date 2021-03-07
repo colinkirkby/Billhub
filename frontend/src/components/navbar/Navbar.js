@@ -11,7 +11,9 @@ function Navbar()
     const [navbar, setNavbar] = useState(false);
     const showNavbar = () => setNavbar(!navbar);
 
-
+    function removeLoginToken() {
+        localStorage.clear();
+    }
 
     // DEBUG FUNCTION
     // const logSomething = () => {
@@ -72,7 +74,7 @@ function Navbar()
                             </li>
                             
                             <li className = 'nav-item'>
-                                <Link to = '/' className = 'nav-links'>
+                                <Link to = '/' className = 'nav-links' onClick = {() => removeLoginToken()}>
                                     <RiLogoutBoxFill className = 'nav-icon' />
                                     Sign Out
                                 </Link>
