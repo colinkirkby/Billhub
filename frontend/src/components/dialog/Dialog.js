@@ -6,9 +6,12 @@ import CurrencyInput from "react-currency-input-field";
 import Select from 'react-select';
 import {useSpring, animated} from 'react-spring'
 import "./Dialogstyle.css"
+import DatePicker from "react-datepicker";
+
+import "./datepicker.css";
+
 
 const TRANSACTION_API_BASE_URL = "http://localhost:8080/api/v1/newtrans";
-
 const customStyles2 = {
   option: (provided, state) => ({
     ...provided,
@@ -20,7 +23,11 @@ const customStyles2 = {
     marginTop: "5%",
   })
 }
-
+const DateCont = styled.div`
+display: flex;
+flex direnction: column;
+justify content: center;
+`
 const Container = styled.div`
 display: flex;
 flex-direction: column;
@@ -28,6 +35,9 @@ justify-content: center;
 align-items: center;
 line-height: 1.8;
 color: #141414;
+padding: 10px;
+transform: translate(0%, 5%);
+
 
 `;
 
@@ -40,24 +50,42 @@ const Button1 = styled.button`
   color: #fff;
   font-size: 24px;
   cursor: pointer;
+  transform: translate(42%, 70%);
 `;
-
-const Button2 = styled.button`
-  min-width: 20px;
-  padding: 5px 5px;
+const Button3 = styled.button`
+  min-width: 100px;
+  padding: 16px 39px;
   border-radius: 4px;
   border: none;
   background: #1c2237;
   color: #fff;
-  font-size: 11px;
+  font-size: 24px;
   cursor: pointer;
-  transform: translate(840%, -1320%);
+`;
+
+
+const Button2 = styled.button`
+  min-width: 20px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  background: #1c2237;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transform: translate(1310%, -950%);
 `;
 
 const Header = styled.h1`
 transform: translate(0%,-5%);
 font-size: 45px;
 
+`
+const Subhead2 = styled.h1`
+font-size: 24px;
+transform: translate(-25px,0px);
+postion: relative;
+text-align: center;
 `
 const Subhead = styled.h1`
 font-size: 24px;
@@ -71,8 +99,8 @@ const customStyles = {
       left: '50%',
       right: 'auto',
       bottom: 'auto',
-      width: '370px',
-      height: '450px',
+      width: '600px',
+      height: '480px',
       boxshadow: '0 5px 16px rgba(0, 0, 0, 0.2)',
       background: '#eee',
       color: '#eee',
@@ -102,6 +130,7 @@ var inputs = []
 const [amount,setAmount] = useState(null);
 const [name,setName] = useState(null);
 const [catagory,setCatagory]= useState(null);
+const [date, setDate] = useState(null);
 const [modalIsOpen , setModalIsOpen] = useState(false);  
 const [buttonisactive, setButtonisactive] = useState(true);
 const animation = useSpring({
@@ -116,7 +145,7 @@ const animation = useSpring({
 return( 
     <div>
       
-        <Button1 onClick= {() => setModalIsOpen( true)}>Add Transaction</Button1>
+        <Button3 onClick= {() => setModalIsOpen( true)}>Add Transaction</Button3>
        
           <Modal 
           isOpen= {modalIsOpen} 
@@ -125,16 +154,21 @@ return(
           ariaHideApp={false}
           >
                <animated.div style = {animation}>
+
+            <div className = 'body'>
             <Container>
                 <Header></Header>
                 <div >
+                
                 <Subhead>Catagory</Subhead>
                 <Select options = {options}
                   onChange={(value) => setCatagory(value.label)}
                   autoFocus = {true}
-                  styles = {customStyles2}
                 >
+                  
                 </Select>
+                
+                
                 <Subhead>Amount</Subhead>
                 <div >
                 <CurrencyInput className = "currency"
@@ -154,11 +188,29 @@ return(
                       placeholder = "enter name"
                       className = "nameform" />
                   </form>
+                  
+                 
                 </div>
+              
+                </div>
+               
+                
+                
+
+               
+            </Container>
+            
+            <Container>
+            <Subhead2>Date</Subhead2>
+                <DatePicker selected = {date} onChange = { (date) => setDate(date)}
+                  inline
+                  >
+                    </DatePicker> 
+                
+                </Container>
                 </div>
                 <Button2 onClick= {() => setModalIsOpen( false)}>x</Button2>
                 <Button1 onClick= {() => closeAndSubmit() } >Add Transaction</Button1>
-            </Container>
             </animated.div>
           </Modal>
           
@@ -166,10 +218,11 @@ return(
 
 );
 function closeAndSubmit(){
-  if (amount != null && name != null && name != null){ 
+  if (amount != null && name != null && name != null && date != null){ 
     inputs[0] = amount;
     inputs[1] = name;
     inputs[2] = catagory;
+    inputs[3] = date;
     
       setModalIsOpen(false);
       console.log(inputs);

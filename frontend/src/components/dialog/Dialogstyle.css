@@ -54,3 +54,13 @@
     
    
 }
+.date{
+border-color: black;
+border-radius:  5px;
+
+}
+.body{
+    display:flex;
+    flex-direction: row;
+    
+}
