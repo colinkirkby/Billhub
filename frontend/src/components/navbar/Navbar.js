@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { FaBars, FaTimes, FaHome, FaMapMarkerAlt } from 'react-icons/fa';
@@ -6,7 +6,7 @@ import { RiMoneyDollarCircleFill, RiAccountCircleFill, RiLoginBoxFill, RiLogoutB
 // import '../../PrivateRoute';
 import './Navbar.css';
 
-function Navbar()
+function Navbar(props)
 {
     const [navbar, setNavbar] = useState(false);
     const showNavbar = () => setNavbar(!navbar);
@@ -66,26 +66,33 @@ function Navbar()
                                 {/* </Link> */}
                             {/* </li> */}
 
+                            {props.isLoggedIn ?
+                            null :
                             <li className = 'nav-item'>
                                 <Link to = '/login' className = 'nav-links'>
                                     <RiLoginBoxFill className = 'nav-icon' />
                                     Sign In
                                 </Link>
-                            </li>
+                            </li>}
                             
+                            {props.isLoggedIn ?
                             <li className = 'nav-item'>
-                                <Link to = '/' className = 'nav-links' onClick = {() => removeLoginToken()}>
+                                <Link to = '/logout' className = 'nav-links'>
                                     <RiLogoutBoxFill className = 'nav-icon' />
                                     Sign Out
                                 </Link>
                             </li>
+                            :
+                            null}
 
+                            {props.isLoggedIn ?
+                            null :
                             <li className = 'nav-item'>
                                 <Link to = '/register' className = 'nav-links'>
                                     <AiFillPlusCircle className = 'nav-icon' />
                                     Register
                                 </Link>
-                            </li>
+                            </li>}
                         </ul>
                     </nav>
                 </div>

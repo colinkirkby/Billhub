@@ -21,6 +21,7 @@ class loginUserComponent extends Component{
         this.changeEmailHandler = this.changeEmailHandler.bind(this);
         this.changePasswordHandler = this.changePasswordHandler.bind(this);
         this.saveUser = this.saveUser.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
     }
 
     saveUser = (e) =>{
@@ -47,6 +48,7 @@ class loginUserComponent extends Component{
                     console.log(res.data.message);
                     const {token} = res.data.token;
                     sessionStorage.setItem("access_token", token);
+                    this.handleLogin();
                     window.location.replace("/dashboard");
                 }
                 else{
@@ -64,6 +66,10 @@ class loginUserComponent extends Component{
 
     redirectToRegister = (event) => {
         window.location.replace('/register');
+    }
+
+    handleLogin(){
+        this.props.loginHandler();
     }
 
     render() {
