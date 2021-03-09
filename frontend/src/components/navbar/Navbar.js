@@ -15,14 +15,6 @@ function Navbar(props)
         sessionStorage.clear();
     }
 
-    // DEBUG FUNCTION
-    // const logSomething = () => {
-        // console.log("BUTTON CLICK")
-    // }
-    // 
-
-
-
     return (
         <>
             <div className = "navbar">
@@ -52,19 +44,26 @@ function Navbar(props)
                                 </Link>
                             </li>
                             
-                            <li className = "nav-item">
-                                <Link to = '/dashboard' className = 'nav-links'>
-                                    <RiDashboardFill className = 'nav-icon' />
-                                    Dashboard
-                                </Link>
-                            </li>
+                            {props.isLoggedIn ?
+                                <li className = "nav-item">
+                                    <Link to = '/dashboard' className = 'nav-links'>
+                                        <RiDashboardFill className = 'nav-icon' />
+                                        Dashboard
+                                    </Link>
+                                </li>
+                                :
+                                null}
 
-                            {/* <li className = 'nav-item'> */}
-                                {/* <Link to = '/account' className = 'nav-links'> */}
-                                    {/* <RiAccountCircleFill className = 'nav-icon' /> */}
-                                    {/* Account */}
-                                {/* </Link> */}
-                            {/* </li> */}
+                            {props.isLoggedIn ?
+                                <li className = 'nav-item'>
+                                    <Link to = '/dashboard/account' className = 'nav-links'>
+                                        <RiAccountCircleFill className = 'nav-icon' />
+                                        Account
+                                    </Link>
+                                </li>
+                                :
+                                null}
+                            
 
                             {props.isLoggedIn ?
                             null :
