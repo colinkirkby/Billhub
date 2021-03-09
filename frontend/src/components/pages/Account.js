@@ -1,47 +1,53 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, Component} from 'react';
 import axios from 'axios';
 
 import './Account.css';
 import './General.css';
+import UserService from '../../UserService';
 
-function Account()
+class Account extends Component
 {
-    const [data, setData] = useState({ hits: [] });
-    useEffect(() => {
-        const fetchData = async () => {
-            const result = await axios(
-                'https://api/v1',
-            );
-            setData(result.data);
-        };
-        fetchData();
-    }, []);
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            email: '',
+        }
+    }
 
-    return (
-        <div className = 'page'>
-            <div className = 'page-container container'>
-                <div className = 'page-title'>
-                    <h1>BillHub Account Details</h1>
+
+    // getAccountInfo = (e) => {
+        // this.setState({name: UserService.getAccount(user).name});
+        // this.setState({email: UserService.getAccount(user).email});
+    // }
+
+    render() {
+        return (
+            <div className = 'page'>
+                <div className = 'page-container container'>
+                    <div className = 'page-title'>
+                        <h1>BillHub Account Details</h1>
+                    </div>
+
+                    <table className = 'table'>
+                        <tr>
+                            <th row className = 'table-header'>Name:</th>
+                            <td className = 'table-data'></td>
+                        </tr>
+
+                        // <tr className = 'separating-line'>
+                        //     <th row className = 'table-header'>Phone Number:</th>
+                        //     <td className = 'table-data'></td>
+                        // </tr>
+
+                        <tr className = 'separating-line'>
+                            <th row className = 'table-header'>Email Address:</th>
+                            <td className = 'table-data'></td>
+                        </tr>
+                    </table>
                 </div>
-
-                <table className = 'table'>
-                    <tr>
-                        <th row className = 'table-header'>Name:</th>
-                        <td className = 'table-data'></td>
-                    </tr>
-
-                    <tr className = 'separating-line'>
-                        <th row className = 'table-header'>Phone Number:</th>
-                        <td className = 'table-data'></td>
-                    </tr>
-
-                    <tr className = 'separating-line'>
-                        <th row className = 'table-header'>Email Address:</th>
-                        <td className = 'table-data'></td>
-                    </tr>
-                </table>
             </div>
-        </div>
-    )
+        )
+    }
 }
 export default Account

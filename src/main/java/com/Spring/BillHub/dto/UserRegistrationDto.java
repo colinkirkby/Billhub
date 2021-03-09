@@ -1,4 +1,4 @@
-package net.java.springboot.web.dto;
+package com.Spring.BillHub.dto;
 //pass a bulk of information from serve to client
 public class UserRegistrationDto {
     private String firstName;

@@ -1,6 +1,8 @@
 import React, {Component, useState} from 'react'
-import { Grid,Paper, Avatar, TextField, Button, Typography,Link } from '@material-ui/core'
+import { Grid,Paper, Avatar, TextField, Button, Typography } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import '../../components/pages/General.css';
+
 // import Signuppage from '../pages/Signuppage';
 // import { Redirect, Route } from "react-router-dom";
 // import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -19,16 +21,39 @@ class loginUserComponent extends Component{
         this.changeEmailHandler = this.changeEmailHandler.bind(this);
         this.changePasswordHandler = this.changePasswordHandler.bind(this);
         this.saveUser = this.saveUser.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
     }
 
     saveUser = (e) =>{
         e.preventDefault();
+        if (this.state.email == '')
+        {
+            window.alert("Email cannot be empty");
+            return;
+        }
+
+        if (this.state.password == '')
+        {
+            window.alert("Password cannot be empty");
+            return;
+        }
+
         let user={email: this.state.email, password:this.state.password};
+
+
         console.log('user => ' + JSON.stringify(user));
         UserService.checkCredential(user)
-            .then((response) => {
-                localStorage.setItem("access_token", "loggedIn");
-                window.location.replace("/dashboard");
+            .then(res => {
+                if (res.data.message=="Success"){
+                    console.log(res.data.message);
+                    const {token} = res.data.token;
+                    sessionStorage.setItem("access_token", token);
+                    this.handleLogin();
+                    window.location.replace("/dashboard");
+                }
+                else{
+                    window.alert("Invalid username or password. Please try again!");
+                }
         });
     }
 
@@ -39,8 +64,16 @@ class loginUserComponent extends Component{
         this.setState({password: event.target.value});
     }
 
+    redirectToRegister = (event) => {
+        window.location.replace('/register');
+    }
+
+    handleLogin(){
+        this.props.loginHandler();
+    }
+
     render() {
-    const paperStyle={padding :20,height:'70vh',width:280, margin:"20px auto"}
+    const paperStyle={padding :20,height:'40vh',width:280, margin:"20px auto"}
     const avatarStyle={backgroundColor:'#1bbd7e'}
     const btnstyle={margin:'8px 0'}
 
@@ -51,29 +84,44 @@ class loginUserComponent extends Component{
                      <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
                     <h2>Sign In</h2>
                 </Grid>
-                <form>                    
-                    <div className ="form-group">
-                        <label> Email: </label>
-                        <input placeholder="Email Address" name="email" className="form-control"
-                            value={this.state.email} onChange={this.changeEmailHandler}/>
+                <form align = 'center'>                    
+                    <div className ="form-group" display = 'flex'>
+                        <TextField label="Email" placeholder="Email Address" name="email" className="form-control"
+                            value={this.state.email} onChange={this.changeEmailHandler} fullWidth required/>
                     </div>
                     
                     <div className ="form-group">
-                        <label> Password: </label>
-                        <input placeholder="Password" name="password" className="form-control"
-                            value={this.state.password} onChange={this.changePasswordHandler}/>
+                        <TextField label="Password" placeholder="Password" name="password" className="form-control"
+                            value={this.state.password} onChange={this.changePasswordHandler} fullWidth required/>
                     </div>
 
-                    <button className="btn btn-success" onClick={this.saveUser}>Sign In</button>
+                    <Button 
+                        className="btn btn-success" 
+                        onClick={this.saveUser} 
+                        type='submit' 
+                        color='primary' 
+                        variant="contained" 
+                        style={btnstyle} 
+                        fullWidth
+                    >
+                        Sign In
+                    </Button>
                 </form>
-
-                <Typography> Don't have an account? Check out the "Register" tab!</Typography>
-
-                {/* <Typography > */}
-                     {/* <Link href="#" > */}
-                        {/* Forgot password ? */}
-                    {/* </Link> */}
-                {/* </Typography> */}
+                
+                <br/>
+                <br/>
+                
+                <Typography align = 'center'> Don't have an account?
+                    <Button 
+                        className = 'btns'
+                        buttonStyle = 'btn--outline'
+                        buttonSize = 'btn--small'
+                        noWrap
+                        onClick = {this.redirectToRegister}
+                    >
+                        Register here!    
+                    </Button>
+                </Typography>
             </Paper>
         </Grid>
     )

@@ -36,8 +36,13 @@ class registerUserComponent extends Component{
         e.preventDefault();
         let user={firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email, password:this.state.password};
         console.log('user => ' + JSON.stringify(user));
-        UserService.createUser(user).then(response =>{
-            window.location.replace("/login");
+        UserService.createUser(user)
+            .then(res =>{
+                window.location.replace("/login");
+        })
+            .catch(err=>{
+                console.log(err);
+                window.alert("The email has been registered.");
         });
     }
 
@@ -54,49 +59,65 @@ class registerUserComponent extends Component{
         this.setState({password: event.target.value});
     }
 
+    redirectToLogin = (event) => {
+        window.location.replace('/login');
+    }
+
     render() {
-    const paperStyle = { padding: '30px 20px', width: 300, margin: "20px auto" }
-    const headerStyle = { margin: 0 }
-    const avatarStyle = { backgroundColor: '#1bbd7e' }
-    const marginTop = { marginTop: 5 }
+        const paperStyle = { padding: '30px 20px', width: 300, margin: "20px auto" }
+        const headerStyle = { margin: 0 }
+        const avatarStyle = { backgroundColor: '#1bbd7e' }
+        const btnstyle={margin:'8px 0'}
+        const marginTop = { marginTop: 5 }
+    
+        return (
+            <Grid>
+                <Paper elevation={20} style={paperStyle}>
+                    <Grid align='center'>
+                        <Avatar style={avatarStyle}>
+                            <AddCircleOutlineOutlinedIcon />
+                        </Avatar>
+                        <h2 style={headerStyle}>Sign Up</h2>
+                        <Typography variant='caption' gutterBottom>Please fill this form to create an account !</Typography>
+                    </Grid>
+                    <form>
+                        <div className ="form-group">
+                            <TextField label="First Name" placeholder="First Name" name="firstName" className="form-control"
+                                value={this.state.firstName} onChange={this.changeFirstNameHandler} fullWidth required/>
+                        </div>
+                        
+                        <div className ="form-group">
+                            <TextField label="Last Name" placeholder="Last Name" name="lastName" className="form-control"
+                                value={this.state.lastName} onChange={this.changeLastNameHandler} fullWidth required/>
+                        </div>
+                        
+                        <div className ="form-group">
+                            <TextField label="Email" placeholder="Email Address" name="email" className="form-control"
+                                value={this.state.email} onChange={this.changeEmailHandler} fullWidth required/>
+                        </div>
+                        
+                        <div className ="form-group">
+                            <TextField label="Password" placeholder="Password" name="password" className="form-control"
+                                value={this.state.password} onChange={this.changePasswordHandler} fullWidth require/>
+                        </div>
+    
+                        <Button className="btn btn-success" onClick={this.saveUser} type='submit' color='primary' variant="contained" style={btnstyle} fullWidth>Register</Button>
+                    </form>
 
-    return (
-        <Grid>
-            <Paper elevation={20} style={paperStyle}>
-                <Grid align='center'>
-                    <Avatar style={avatarStyle}>
-                        <AddCircleOutlineOutlinedIcon />
-                    </Avatar>
-                    <h2 style={headerStyle}>Sign Up</h2>
-                    <Typography variant='caption' gutterBottom>Please fill this form to create an account !</Typography>
-                </Grid>
-                <form>
-                    <div className ="form-group">
-                        <label> First Name: </label>
-                        <input placeholder="First Name" name="firstName" className="form-control"
-                            value={this.state.firstName} onChange={this.changeFirstNameHandler}/>
-                    </div>
-                    
-                    <div className ="form-group">
-                        <label> Last Name: </label>
-                        <input placeholder="Last Name" name="lastName" className="form-control"
-                            value={this.state.lastName} onChange={this.changeLastNameHandler}/>
-                    </div>
-                    
-                    <div className ="form-group">
-                        <label> Email: </label>
-                        <input placeholder="Email Address" name="email" className="form-control"
-                            value={this.state.email} onChange={this.changeEmailHandler}/>
-                    </div>
-                    
-                    <div className ="form-group">
-                        <label> Password: </label>
-                        <input placeholder="Password" name="password" className="form-control"
-                            value={this.state.password} onChange={this.changePasswordHandler}/>
-                    </div>
+                    <br/>
+                    <br/>
 
-                    <button className="btn btn-success" onClick={this.saveUser}>Register</button>
-                </form>
+                    <Typography align = 'center'> Already have an account?
+                    <Button 
+                        className = 'btns'
+                        buttonStyle = 'btn--outline'
+                        buttonSize = 'btn--small'
+                        noWrap
+                        onClick = {this.redirectToLogin}
+                    >
+                        Login here!    
+                    </Button>
+                </Typography>
             </Paper>
         </Grid>
     )
