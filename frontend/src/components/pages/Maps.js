@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { GoogleMap, useLoadScript, Marker, InfoWindow, } from '@react-google-maps/api';
+import React, { Component, useState } from 'react';
+import { GoogleMap, useLoadScript, Marker, InfoWindow, OverlayView, } from '@react-google-maps/api';
 import mapStyles from './map_style.json'
+import Dialog from '../dialog/Dialog';
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -14,6 +15,10 @@ import{
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 import './Maps.css';
+
+
+
+// the array that will be used to show the locations values
 var  values = [];
 values[0] = 0;
 values[1] = 0;
@@ -25,10 +30,12 @@ const mapContainerStyle = {
   width: "100vw",
   height: "100vh",
 };
+// the default that the map will center on when opened
 const center = {
   lat: 49.20827,
   lng: -123.1207,
 }
+//settings for map
 const options = {
   styles: mapStyles,
   disableDefaultUI: true, 
@@ -38,6 +45,9 @@ const options = {
 
 
 function App() {
+
+
+  //uses api key to access the google maps api
     const {isLoaded, loadError} = useLoadScript({
       googleMapsApiKey: "AIzaSyDACAHnoiwNIsS9S06XcaEjFz-3GQBmo8U",
       libraries,
@@ -50,7 +60,7 @@ const mapRef = React.useRef();
 const onMapLoad = React.useCallback((map) => {
   mapRef.current = map;
 }, );
-
+// pans the mapt to the searched for location
 const panTo = React.useCallback((target) => {
   
   mapRef.current.panTo(target);
@@ -65,12 +75,8 @@ const panTo = React.useCallback((target) => {
   if (loadError) return "error loading maps";
   if (!isLoaded) return "loading Maps";
   return (
-    <div className="App-header">
-      <header className= "App-header">
-        
-        <div className="map-info">
+        <div>
           
-          <div className = "map">
           <Search panTo={panTo}/>
 
 
@@ -122,27 +128,17 @@ const panTo = React.useCallback((target) => {
           
           <h2>Cost Map</h2>
           </GoogleMap>
-          </div>
-          {values[0] = 1} 
-          {/* <div className = "info">
-            <h3>info</h3>
-            <div className = "data">
-              <p1>cost of living = {values[0]}</p1>
-              <p2>average income = {values[1]}</p2>
-              <p3>average rent = {values[2]}</p3>
-              <p4>data points = {values[3]}</p4>
-            </div>
-          </div> */}
-        </div>
-
-
-      </header>
-    </div>
+          <Dialog/>
+         
+      
+      </div>
   );
 }
 
 
-
+{
+//search function that uses the google places api and the reach combo cox api 
+}
 function Search({ panTo }) {
   const {
     ready,
