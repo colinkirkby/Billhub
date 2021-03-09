@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Spring.BillHub.annotation.UserLoginToken;
 import com.Spring.BillHub.dto.UserRegistrationDto;
+import com.Spring.BillHub.dto.UserTransactionDto;
 import com.Spring.BillHub.model.User;
 import com.Spring.BillHub.repo.UserRepo;
 import com.Spring.BillHub.service.TokenService;
@@ -86,6 +87,14 @@ public class UserController {
 			}
 		}
 		
+	}
+	//@RequestBody UserTransactionDto userTransactionDto
+	// add a new transaction to the account
+	@PostMapping("/newtrans")
+	public Object newTrans(@RequestBody String[] newTransaction ) throws UsernameNotFoundException {
+
+		System.out.println(newTransaction[3]);
+		return 200;
 	}
 	
 	//This section is for testing only!

@@ -5,6 +5,7 @@ import './General.css';
 import AvgSpending from '../charts/AvgSpending';
 import CostBreakdown from '../charts/CostBreakdown';
 import { Button } from '../button/Button';
+import Dialog from '../dialog/Dialog';
 
 function Dashboard()
 {
@@ -18,13 +19,11 @@ function Dashboard()
                 </div>
 
                 <div className = 'dashboard-cards'>
-                    <div className = 'card'>
-                        <li className = 'card-button'>
-                            <Link to = '/new-entry' className = 'button-link'>
-                                    <Button buttonStyle = 'btn--outline'>Add New Entry</Button>
-                            </Link>
-                        </li>
-                    </div>
+                    
+                        
+                            <Dialog/>
+                        
+                    
 
                     <div className = 'card'>
                         <li className = 'card-button'>

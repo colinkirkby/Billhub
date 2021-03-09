@@ -7,6 +7,7 @@ import Select from 'react-select';
 import {useSpring, animated} from 'react-spring'
 import "./Dialogstyle.css"
 import DatePicker from "react-datepicker";
+import {format} from 'date-fns'
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -220,10 +221,12 @@ return(
 );
 function closeAndSubmit(){
   if (amount != null && name != null && name != null && date != null){ 
+    
     inputs[0] = amount;
     inputs[1] = name;
     inputs[2] = catagory;
     inputs[3] = date;
+    
     
       setModalIsOpen(false);
       console.log(inputs);
