@@ -9,25 +9,7 @@
     color: #282c34;
   
   }
-  .map-info{
-    background-color: #585858;
-    display: flex;
-    flex-direction:column;
-    align-items: top;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: rgb(255, 255, 255);
-  }
-  .map{
-    background-color: #585858;
-    display: flex;
-    flex-direction:row;
-    align-items: top;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: rgb(255, 255, 255);
-
-  }
+  
   .search{
     position: absolute;
     top: 6rem;
@@ -55,6 +37,11 @@
     flex-direction:column;
     font-size: calc(2px + 1vmin);
     color: rgb(0, 0, 0);
+  }
+  .text{
+    align-items: left;
+    display: flex;
+    flex-direction: column;
   }
   
   
