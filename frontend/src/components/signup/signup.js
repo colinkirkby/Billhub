@@ -78,7 +78,7 @@ class registerUserComponent extends Component{
                             <AddCircleOutlineOutlinedIcon />
                         </Avatar>
                         <h2 style={headerStyle}>Sign Up</h2>
-                        <Typography variant='caption' gutterBottom>Please fill this form to create an account !</Typography>
+                        <Typography variant='caption' gutterBottom>Please fill this form to create an account!</Typography>
                     </Grid>
                     <form>
                         <div className ="form-group">
@@ -112,7 +112,6 @@ class registerUserComponent extends Component{
                         className = 'btns'
                         buttonStyle = 'btn--outline'
                         buttonSize = 'btn--small'
-                        noWrap
                         onClick = {this.redirectToLogin}
                     >
                         Login here!    

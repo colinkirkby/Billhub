@@ -48,7 +48,7 @@ class logout extends Component{
                         style={typostyle} 
                         align = 'center'
                     > 
-                        You are attempting to log out BillHub.
+                        You are attempting to log out of BillHub.
                     </Typography>
                     <Button
                         className="btn btn-success" 

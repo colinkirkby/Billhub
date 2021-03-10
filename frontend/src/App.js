@@ -54,7 +54,9 @@ class App extends Component {
           <Route path = '/logout' render={(props)=>(<Logout logoutHandler={this.handleLogout} {...props}/>)} />
           <Route path = '/register' component = {Signuppage} />
           <PrivateRoute path = '/dashboard' loggedIn = { sessionStorage.getItem("access_token")} component = {Dashboard}/>
-            <Route path = '/dashboard/account' component = {Account} />
+          <PrivateRoute path = '/account' loggedIn = { sessionStorage.getItem("access_token")} component = {Account} />
+
+            {/* <Route path = '/dashboard/account' component = {Account} /> */}
             <Route path = '/dashboard/new-entry' component = {NewEntry} />
             <Route path = '/dashboard/entries' component = {EntryList} />
         </Switch>

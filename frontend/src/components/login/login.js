@@ -1,7 +1,7 @@
-import React, {Component, useState} from 'react'
+import React, {Component} from 'react'
 import { Grid,Paper, Avatar, TextField, Button, Typography } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import '../../components/pages/General.css';
+// import '../../components/pages/General.css';
 
 // import Signuppage from '../pages/Signuppage';
 // import { Redirect, Route } from "react-router-dom";
@@ -40,14 +40,15 @@ class loginUserComponent extends Component{
 
         let user={email: this.state.email, password:this.state.password};
 
-
         console.log('user => ' + JSON.stringify(user));
+
         UserService.checkCredential(user)
             .then(res => {
                 if (res.data.message=="Success"){
                     console.log(res.data.message);
                     const {token} = res.data.token;
                     sessionStorage.setItem("access_token", token);
+                    sessionStorage.setItem("email", this.state.email);
                     this.handleLogin();
                     window.location.replace("/dashboard");
                 }
@@ -73,15 +74,17 @@ class loginUserComponent extends Component{
     }
 
     render() {
-    const paperStyle={padding :20,height:'40vh',width:280, margin:"20px auto"}
+    const paperStyle={padding: '30px 20px', width:300, margin:"20px auto"}
     const avatarStyle={backgroundColor:'#1bbd7e'}
-    const btnstyle={margin:'28px 0'}
+    const btnstyle={margin:'8px 0'}
 
     return(
         <Grid>
-            <Paper elevation={10} style={paperStyle}>
+            <Paper elevation={20} style={paperStyle}>
                 <Grid align='center'>
-                     <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
+                     <Avatar style={avatarStyle}>
+                        <LockOutlinedIcon/>
+                    </Avatar>
                     <h2>Sign In</h2>
                 </Grid>
                 <form align = 'center'>                    
@@ -91,7 +94,7 @@ class loginUserComponent extends Component{
                     </div>
                     
                     <div className ="form-group">
-                        <TextField label="Password" placeholder="Password" name="password" className="form-control"
+                        <TextField id="filled-password-input" label="Password" type="password" placeholder="Password" name="password" className="form-control"
                             value={this.state.password} onChange={this.changePasswordHandler} fullWidth required/>
                     </div>
 
@@ -116,7 +119,6 @@ class loginUserComponent extends Component{
                         className = 'btns'
                         buttonStyle = 'btn--outline'
                         buttonSize = 'btn--small'
-                        noWrap
                         onClick = {this.redirectToRegister}
                     >
                         Register here!    

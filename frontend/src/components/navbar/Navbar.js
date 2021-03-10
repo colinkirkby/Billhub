@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { FaBars, FaTimes, FaHome, FaMapMarkerAlt } from 'react-icons/fa';
 import { RiMoneyDollarCircleFill, RiAccountCircleFill, RiLoginBoxFill, RiLogoutBoxFill, RiDashboardFill } from 'react-icons/ri';
-// import '../../PrivateRoute';
 import './Navbar.css';
 
 function Navbar(props)
@@ -59,7 +58,7 @@ function Navbar(props)
 
                             {props.isLoggedIn ?
                                 <li className = 'nav-item'>
-                                    <Link to = '/dashboard/account' className = 'nav-links'>
+                                    <Link to = '/account' className = 'nav-links'>
                                         <RiAccountCircleFill className = 'nav-icon' />
                                         Account
                                     </Link>
