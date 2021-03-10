@@ -10,11 +10,14 @@ function Navbar(props)
 {
     const [navbar, setNavbar] = useState(false);
     const showNavbar = () => setNavbar(!navbar);
-
+/*
     function removeLoginToken() {
         sessionStorage.clear();
+        this.props.setState({isLoggedIn : false})
+        // this.props.history.push('/');
+        
     }
-
+*/
     return (
         <>
             <div className = "navbar">

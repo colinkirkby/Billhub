@@ -75,7 +75,7 @@ class loginUserComponent extends Component{
     render() {
     const paperStyle={padding :20,height:'40vh',width:280, margin:"20px auto"}
     const avatarStyle={backgroundColor:'#1bbd7e'}
-    const btnstyle={margin:'8px 0'}
+    const btnstyle={margin:'28px 0'}
 
     return(
         <Grid>

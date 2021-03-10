@@ -31,7 +31,6 @@ class App extends Component {
 
   handleLogout(){
     this.setState({isLoggedIn : false});
-    window.location.replace("/");
   }
 
   componentDidMount(){
