@@ -10,16 +10,28 @@ class Account extends Component
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
-            email: '',
-        }
+            firstName: '',
+            lastName: '',
+        };
     }
 
+    getAccountInfo() {
+        let userEmail = sessionStorage.getItem("email");
+        UserService.getAccount(userEmail)
+            .then(res => {
+                console.log("Success");
+                this.setState({firstName: res.data.firstName});
+                this.setState({lastName: res.data.lastName});
+            })
+            .catch((error) => {
+                window.alert("Sorry, something went wrong. Please check back later.");
+                window.location.replace("/dashboard");
+            });
+    }
 
-    // getAccountInfo = (e) => {
-        // this.setState({name: UserService.getAccount(user).name});
-        // this.setState({email: UserService.getAccount(user).email});
-    // }
+    componentDidMount() {
+        this.getAccountInfo();
+    }
 
     render() {
         return (
@@ -31,18 +43,18 @@ class Account extends Component
 
                     <table className = 'table'>
                         <tr>
-                            <th row className = 'table-header'>Name:</th>
-                            <td className = 'table-data'></td>
+                            <th row className = 'table-header'>First Name: </th>
+                            <td className = 'table-data'>{this.state.firstName}</td>
                         </tr>
 
-                        // <tr className = 'separating-line'>
-                        //     <th row className = 'table-header'>Phone Number:</th>
-                        //     <td className = 'table-data'></td>
-                        // </tr>
+                        <tr className = 'separating-line'>
+                            <th row className = 'table-header'>Last Name: </th>
+                            <td className = 'table-data'>{this.state.lastName}</td>
+                        </tr>
 
                         <tr className = 'separating-line'>
-                            <th row className = 'table-header'>Email Address:</th>
-                            <td className = 'table-data'></td>
+                            <th row className = 'table-header'>Email Address: </th>
+                            <td className = 'table-data'>{sessionStorage.getItem("email")}</td>
                         </tr>
                     </table>
                 </div>
