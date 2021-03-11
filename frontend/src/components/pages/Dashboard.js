@@ -10,7 +10,7 @@ import Dialog from '../dialog/Dialog';
 function Dashboard()
 {
     const [button, setButton] = useState(true);
-
+    console.log(sessionStorage.getItem('email')) 
     return (
         <div className = 'page'>
             <div className = 'page-container container'>
@@ -30,8 +30,11 @@ function Dashboard()
                             <Link to = '/entries' className = 'button-link'>
                                     <Button buttonStyle = 'btn--outline'>View Existing Entries</Button>
                             </Link>
+                            
                         </li>
+
                     </div>
+                    
                 </div>
 
                 <div className = 'charts'>

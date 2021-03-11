@@ -48,6 +48,7 @@ class loginUserComponent extends Component{
                     console.log(res.data.message);
                     const {token} = res.data.token;
                     sessionStorage.setItem("access_token", token);
+                    sessionStorage.setItem("email",user.email)
                     this.handleLogin();
                     window.location.replace("/dashboard");
                 }

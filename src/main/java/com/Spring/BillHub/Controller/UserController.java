@@ -4,6 +4,7 @@ package com.Spring.BillHub.Controller;
 // import java.util.stream.Collectors;
 // import javax.servlet.http.HttpServletRequest;
 
+import com.Spring.BillHub.model.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.security.core.GrantedAuthority;
 // import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -68,7 +69,7 @@ public class UserController {
 	@PostMapping("/login")
     public Object userLogin(@RequestBody UserRegistrationDto registrationDto) throws UsernameNotFoundException{
 		JSONObject jsonObject = new JSONObject();
-		User user = repository.findByEmail(registrationDto.getEmail()); 
+		User user = repository.findByEmail(registrationDto.getEmail());
 		if (user == null) {
 			jsonObject.put("message", "login-failed, invalid username");
 			return jsonObject;
@@ -92,8 +93,11 @@ public class UserController {
 	// add a new transaction to the account
 	@PostMapping("/newtrans")
 	public Object newTrans(@RequestBody String[] newTransaction ) throws UsernameNotFoundException {
+		Transaction transaction = new Transaction(newTransaction);
+		repository.findByEmail(transaction.getEmail()).addTransaction(transaction);
+		repository.findByEmail(transaction.getEmail()).getTransactions();
+		
 
-		System.out.println(newTransaction[3]);
 		return 200;
 	}
 	
