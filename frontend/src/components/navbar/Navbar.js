@@ -1,7 +1,7 @@
- import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AiFillPlusCircle } from 'react-icons/ai';
-import { FaBars, FaTimes, FaHome, FaMapMarkerAlt, FaBook } from 'react-icons/fa';
+import { FaBars, FaTimes, FaHome, FaMapMarkerAlt, FaBook, FaSearch } from 'react-icons/fa';
 import { RiMoneyDollarCircleFill, RiAccountCircleFill, RiLoginBoxFill, RiLogoutBoxFill, RiDashboardFill } from 'react-icons/ri';
 import './Navbar.css';
 
@@ -9,14 +9,7 @@ function Navbar(props)
 {
     const [navbar, setNavbar] = useState(false);
     const showNavbar = () => setNavbar(!navbar);
-/*
-    function removeLoginToken() {
-        sessionStorage.clear();
-        this.props.setState({isLoggedIn : false})
-        // this.props.history.push('/');
-        
-    }
-*/
+
     return (
         <>
             <div className = "navbar">
@@ -50,6 +43,13 @@ function Navbar(props)
                                 <Link to = '/financial-glossary' className = 'nav-links'>
                                     <FaBook className = 'nav-icon' />
                                     Glossary
+                                </Link>
+                            </li>
+
+                            <li className = 'nav-item'>
+                                <Link to = '/resources' className = 'nav-links'>
+                                    <FaSearch className = 'nav-icon' />
+                                    Resources
                                 </Link>
                             </li>
                             

@@ -7,6 +7,7 @@ import Dashboard from './components/pages/Dashboard';
 import Account from './components/pages/Account';
 import Maps from './components/pages/Maps';
 import Glossary from './components/pages/Glossary';
+import ResourcePage from './components/pages/ResourcePage';
 import NewEntry from './components/pages/NewEntry';
 import EntryList from './components/pages/EntryList';
 import Homepage from "./components/pages/Homepage";
@@ -52,6 +53,7 @@ class App extends Component {
           <Redirect exact from = '/' to = '/homepage' />
           <Route path = '/maps' component = {Maps} />
           <Route path = '/financial-glossary' component = {Glossary} />
+          <Route path = '/resources' component = {ResourcePage} />
           <Route path = '/login' render={(props)=>(<Login loginHandler={this.handleLogin} {...props}/>)} />
           <Route path = '/logout' render={(props)=>(<Logout logoutHandler={this.handleLogout} {...props}/>)} />
           <Route path = '/register' component = {Signuppage} />
