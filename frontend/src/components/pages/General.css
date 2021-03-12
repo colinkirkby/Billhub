@@ -9,6 +9,7 @@
 
 .page-container
 {
+    margin-left: 100px;
     padding: 20px 35px;
 }
 
@@ -36,3 +37,19 @@
     top: 100px;
     font-weight: 300;
 }
+
+.page-body > h2
+{
+    font-size: 20px;
+    margin-left: 120px;
+    margin-top: -20px;
+    font-weight: 100;
+}
+
+.page-body > h3
+{
+    font-size: 18px;
+    margin-left: -80px;
+    margin-top: 30px;
+}
+

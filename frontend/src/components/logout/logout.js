@@ -1,6 +1,7 @@
 import React, {Component, useState} from 'react'
 import { Grid,Paper, Avatar, TextField, Button, Typography,Link } from '@material-ui/core'
 import LockOpenOutlinedIcon from '@material-ui/icons/LockOpenOutlined';
+import '../pages/General.css';
 // import Signuppage from '../pages/Signuppage';
 // import { Redirect, Route } from "react-router-dom";
 // import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -31,7 +32,7 @@ class logout extends Component{
     }
 
     render() {
-    const paperStyle={padding :20,height:'40vh',width:280, margin:"20px auto"}
+    const paperStyle={padding :20,height:350,width:280, margin:"20px auto"}
     const avatarStyle={backgroundColor:'#1bbd7e'}
     const btnstyle={margin:'8px 0'}
     const typostyle={margin:'28px 0'}
@@ -40,8 +41,10 @@ class logout extends Component{
         <Grid>
             <Paper elevation={10} style={paperStyle}>
                 <Grid align='center'>
+                    <div className = 'page-title'>
+                        <h1>Sign Out</h1>
+                    </div>
                      <Avatar style={avatarStyle}><LockOpenOutlinedIcon/></Avatar>
-                    <h2>Sign Out</h2>
                 </Grid>
                 <form>                    
                     <Typography

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { Grid,Paper, Avatar, TextField, Button, Typography } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import '../pages/General.css';
 // import '../../components/pages/General.css';
 
 // import Signuppage from '../pages/Signuppage';
@@ -82,10 +83,12 @@ class loginUserComponent extends Component{
         <Grid>
             <Paper elevation={20} style={paperStyle}>
                 <Grid align='center'>
+                    <div className = 'page-title'>
+                        <h1>Sign In</h1>
+                    </div>
                      <Avatar style={avatarStyle}>
                         <LockOutlinedIcon/>
                     </Avatar>
-                    <h2>Sign In</h2>
                 </Grid>
                 <form align = 'center'>                    
                     <div className ="form-group" display = 'flex'>

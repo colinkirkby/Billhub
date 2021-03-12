@@ -10,6 +10,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { render } from '@testing-library/react';
 import UserService from '../../UserService';
 import { Redirect } from 'react-router';
+import '../pages/General.css';
 
 class registerUserComponent extends Component{
     constructor(props){
@@ -74,11 +75,13 @@ class registerUserComponent extends Component{
             <Grid>
                 <Paper elevation={20} style={paperStyle}>
                     <Grid align='center'>
+                        <div className = 'page-title'>
+                            <h1>Sign Up</h1>
+                        </div>
                         <Avatar style={avatarStyle}>
                             <AddCircleOutlineOutlinedIcon />
                         </Avatar>
-                        <h2 style={headerStyle}>Sign Up</h2>
-                        <Typography variant='caption' gutterBottom>Please fill this form to create an account!</Typography>
+                        <Typography variant='caption' gutterBottom>Please fill out this form to create an account!</Typography>
                     </Grid>
                     <form>
                         <div className ="form-group">
