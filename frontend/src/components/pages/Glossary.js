@@ -1,6 +1,7 @@
 import React, {Component, useMemo} from 'react';
 import GlossaryTable from './GlossaryTable';
 import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core'
 import './General.css';
 import './Glossary.css';
 
@@ -10,17 +11,23 @@ function Glossary() {
             {
                 Header: 'TERM',
                 accessor: 'term',
+                width: 250,
             },
 
             {
                 Header: 'DEFINITION',
                 accessor: 'definition',
+                width: 700,
             },
 
             {
                 Header: 'RESOURCE',
                 accessor: 'resource',
-                Cell: ({ row }) => <a href = {row.original.resource}>{row.original.resource}</a>
+                Cell: ({ row }) => (
+                    <div style = {{ textAlign: "center" }}>
+                        <Button onClick = {() => window.open(row.original.resource)}> Further Reading </Button>
+                    </div>),
+                width: 300,                
             },
         ],
         []

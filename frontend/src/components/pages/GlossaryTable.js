@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTable } from 'react-table';
+import { useBlockLayout, useTable } from 'react-table';
 import './General.css';
 import './Glossary.css';
 
@@ -7,6 +7,12 @@ import './Glossary.css';
 
 function GlossaryTable({ columns, data })
 {
+    const defaultColumn = React.useMemo (
+      () => ({
+        width: 400,
+      }),
+      []
+    )
     const {
         getTableProps, // table props from react-table
         getTableBodyProps, // table body props from react-table
@@ -15,16 +21,19 @@ function GlossaryTable({ columns, data })
         prepareRow // Prepare the row (this function needs to be called for each row before getting the row props)
       } = useTable({
         columns,
-        data
-      });
+        data,
+        defaultColumn,
+      }, 
+        useBlockLayout
+    )
 
       return (
         <table className = 'table' {...getTableProps()}>
-          <thead className = 'table-header'>
+          <thead >
             {headerGroups.map(headerGroup => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map(column => (
-                  <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+                  <th className = 'table-header' {...column.getHeaderProps()}>{column.render("Header")}</th>
                 ))}
               </tr>
             ))}
