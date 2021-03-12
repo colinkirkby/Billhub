@@ -2,9 +2,9 @@
 Requirements: 
 The software will be a multi-page web application. The home page and the map page of the project will be accessible by all people who view the page.
 When any user accesses the map page, they will be able to select a location on the map and have the local data for that location shown to them immediately.
-Unregistered users will be able to register for an account from the home page. Their information will be stored in the server.
-Registered users will be able to log in from any page. When a registered user is logged in they will be able to view their personal account information.
-Their transaction history and financial details will be displayed to them on their home page. Their statistics will be displayed in graphs to be easy to 
+Unregistered users will be able to register for an account from the navigation menu accessible from any page and check the meaning of major financial terms appeared.
+Their information will be stored in the server. Registered users will be able to log in from any page. When a registered user is logged in they will be able to view 
+their personal account information. Their transaction history and financial details will be displayed to them on their home page. Their statistics will be displayed in graphs to be easy to 
 understand. They will have the ability to track a new transaction or add other personal financial information like income and rent. They will also have 
 the choice to privately share their financial information to the cost map. Users who do not choose this will have none of their information shared.  
 Logged in users will have the ability to log out from any of the pages. 
@@ -19,3 +19,4 @@ User Stories:
 * As an unregistered user, I want to be able to go to the home page to see what services are available if I sign up
 * As a registered user I want to be able to choose if my financial information is shared so I can keep my privacy
 * As a user I want the pages to be responsive and visually appealing
+* As an unregistered user, I want to check the meaning of financial terms within a financial glossary page
