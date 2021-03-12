@@ -1,7 +1,7 @@
  import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AiFillPlusCircle } from 'react-icons/ai';
-import { FaBars, FaTimes, FaHome, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaBars, FaTimes, FaHome, FaMapMarkerAlt, FaBook } from 'react-icons/fa';
 import { RiMoneyDollarCircleFill, RiAccountCircleFill, RiLoginBoxFill, RiLogoutBoxFill, RiDashboardFill } from 'react-icons/ri';
 import './Navbar.css';
 
@@ -43,6 +43,13 @@ function Navbar(props)
                                 <Link to = '/maps' className = 'nav-links'>
                                     <FaMapMarkerAlt className = 'nav-icon' />
                                     Maps
+                                </Link>
+                            </li>
+
+                            <li className = 'nav-item'>
+                                <Link to = '/financial-glossary' className = 'nav-links'>
+                                    <FaBook className = 'nav-icon' />
+                                    Glossary
                                 </Link>
                             </li>
                             

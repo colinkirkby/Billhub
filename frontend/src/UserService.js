@@ -3,6 +3,7 @@ import axios from 'axios';
 const REGISTRATION_API = "http://localhost:8080/api/v1/registration";
 const LOGIN_API = "http://localhost:8080/api/v1/login";
 const ACCOUNT_API = "http://localhost:8080/api/v1/account";
+const CHANGE_EMAIL_API = "http://localhost:8080/api/v1/change-email";
 
 // *** Input correct URLs once they're ready *** //
 // const DATA_API = "http://localhost:8080/api/v1";

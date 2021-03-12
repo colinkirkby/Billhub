@@ -14,8 +14,8 @@
 
 .page-title
 {
-    display: flex;
-    align-items: center;
+    display: inline-flex;
+    align-items: left;
     left: 20px;
 }
 
@@ -24,6 +24,7 @@
     font-size: 30px;
     color: black;
     margin-bottom: 20px;
+    left: 0px;
     font-weight: 800;
 }
 
@@ -32,5 +33,6 @@
     font-size: 24px;
     color: black;
     margin-bottom: 20px;
+    top: 100px;
     font-weight: 300;
 }
