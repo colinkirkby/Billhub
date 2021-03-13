@@ -7,6 +7,7 @@ import Select from 'react-select';
 import {useSpring, animated} from 'react-spring'
 import "./Dialogstyle.css"
 import DatePicker from "react-datepicker";
+import {format} from 'date-fns'
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -126,6 +127,7 @@ const handleSubmit = (e) => {
     e.preventDefault();
     
 } 
+var email = sessionStorage.getItem('email');
 
 var inputs = [] 
 const [amount,setAmount] = useState(null);
@@ -219,11 +221,14 @@ return(
 
 );
 function closeAndSubmit(){
+  console.log(email);
   if (amount != null && name != null && name != null && date != null){ 
-    inputs[0] = amount;
+    
+    inputs[0] = email;
     inputs[1] = name;
     inputs[2] = catagory;
     inputs[3] = date;
+    inputs[4] = amount;
     
       setModalIsOpen(false);
       console.log(inputs);
