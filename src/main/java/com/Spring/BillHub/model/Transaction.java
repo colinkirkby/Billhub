@@ -1,40 +1,48 @@
 package com.Spring.BillHub.model;
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "transactions")
-public class Transaction {
-    @Id                       //use id as the primary key of this table
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @SequenceGenerator(
-            name = "transaction_generator",
-            sequenceName = "transaction_sequence",
-            initialValue = 1000
-    )
-    private long id;
+@Embeddable
+public class Transaction{
 
+    private Long id;
 
-    @Column (name = "email")
     private String email;
-    @Column (name = "name")
+
     private String name;
-    @Column (name = "type")
+
     private String type;
-    @Column (name = "Date")
+
     private String date;
-    @Column (name = "amount")
+
     private String amount;
 
-    public Transaction(){
+    public Transaction() {
+
     }
+
+    public Transaction(String email, String name, String type, String date, String amount, Long id) {
+        this.email = email;
+        this.name = name;
+        this.type = type;
+        this.date = date;
+        this.amount = amount;
+        this.id = id;
+    }
+
     public Transaction(String[] input) {
         email = input[0];
         name = input[1];
         type = input[2];
         date = input[3];
         amount = input[4];
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -61,7 +69,7 @@ public class Transaction {
     public String toString() {
         return "email = " + email + "\n" +
                 "name = " + name + " \n" +
-                "type = " + type + "\n" +
+                "type = " + type + "\n " +
                 "amount " + amount + "\n"+
                 "id =" + id;
     }
