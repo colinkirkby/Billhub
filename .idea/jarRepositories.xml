@@ -16,5 +16,10 @@
       <option name="name" value="JBoss Community repository" />
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="Spark repository" />
+      <option name="name" value="Spark repository" />
+      <option name="url" value="http://www.sparkjava.com/nexus/content/repositories/spark/" />
+    </remote-repository>
   </component>
 </project>

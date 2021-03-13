@@ -1,7 +1,9 @@
 package com.Spring.BillHub.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "TESTING")       //This tells Hibernate the name of table is called "Testing"
@@ -27,6 +29,19 @@ public class User extends AuditModel{
     @Column(name = "password")       //tells Hibernate to create a column called "pass_word"
     private String password;          //format of password to be discussed later
 
+
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name = "transactions",
+//            joinColumns = @JoinColumn(
+//                    name = "user_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn (
+//                    name = "transaction_id", referencedColumnName = "id")
+//    )
+    @ElementCollection
+    private List<Transaction> transactions = new ArrayList<>();
+
+
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)   //Eager: everytime we retrive an user, we retrive his/her role
     @JoinTable(                             //introduce a third table to maintain the relationship between the two tables
             name = "users_roles",           //the name of the third table is called "users_roles"
@@ -39,8 +54,10 @@ public class User extends AuditModel{
     // enum for account type -> default to NOT_REGISTERED
     private AccountType accountType = AccountType.NOT_REGISTERED;
 
+
     //default constructor
-    public User() {}
+    public User() {
+    }
 
     //constructor to initialize the arguments above
     public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
@@ -91,6 +108,7 @@ public class User extends AuditModel{
         this.roles = roles;
     }
 
+
     public AccountType getAccountType() {
         return accountType;
     }
@@ -99,8 +117,18 @@ public class User extends AuditModel{
         this.accountType = accountType;
     }
 
-    
-    
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public void addTransaction(Transaction transaction) {
+        this.transactions.add(transaction);
+    }
+
     @Override
     public String toString() {
         return "User{" +
