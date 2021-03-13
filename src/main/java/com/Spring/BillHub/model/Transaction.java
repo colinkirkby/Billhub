@@ -15,6 +15,7 @@ public class Transaction {
     )
     private long id;
 
+
     @Column (name = "email")
     private String email;
     @Column (name = "name")
@@ -26,6 +27,8 @@ public class Transaction {
     @Column (name = "amount")
     private String amount;
 
+    public Transaction(){
+    }
     public Transaction(String[] input) {
         email = input[0];
         name = input[1];
@@ -58,7 +61,7 @@ public class Transaction {
     public String toString() {
         return "email = " + email + "\n" +
                 "name = " + name + " \n" +
-                "type = " + type + "\n " +
+                "type = " + type + "\n" +
                 "amount " + amount + "\n"+
                 "id =" + id;
     }

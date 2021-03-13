@@ -83,7 +83,7 @@ public class UserController {
 				return jsonObject;
 			}
 			else {
-				jsonObject.put("message", "Invalid username or password"); 
+				jsonObject.put("message", "Invalid username or password");
 				return jsonObject;
 			}
 		}
@@ -94,11 +94,16 @@ public class UserController {
 	@PostMapping("/newtrans")
 	public Object newTrans(@RequestBody String[] newTransaction ) throws UsernameNotFoundException {
 		Transaction transaction = new Transaction(newTransaction);
+		System.out.println("adding new transaction");
 		repository.findByEmail(transaction.getEmail()).addTransaction(transaction);
-		repository.findByEmail(transaction.getEmail()).getTransactions();
-		
 
 		return 200;
+
+		//System.out.println(user.toString());
+		//System.out.println(newTransaction[0]);
+		//repository.save(user);
+
+
 	}
 	
 	//This section is for testing only!

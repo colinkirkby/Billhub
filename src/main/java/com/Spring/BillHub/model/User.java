@@ -33,15 +33,9 @@ public class User extends AuditModel{
     private String password;          //format of password to be discussed later
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "transactions",
-            joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn (
-                    name = "transaction_id", referencedColumnName = "id")
-            )
-    private List<Transaction> transactions = new ArrayList<>();
+    @OneToMany (mappedBy = "id")
+
+    private Collection<Transaction> transactions;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)   //Eager: everytime we retrive an user, we retrive his/her role
     @JoinTable(                             //introduce a third table to maintain the relationship between the two tables
@@ -117,7 +111,9 @@ public class User extends AuditModel{
     public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
     }
-    public void addTransaction(Transaction newtrans){this.transactions.add(newtrans);
+    public void addTransaction(Transaction newtrans){
+        //ArrayList<Transaction> newtranslist = transactions;
+        this.transactions.add(newtrans);
 
     System.out.println(this.transactions.size());}
     
@@ -139,7 +135,7 @@ public class User extends AuditModel{
        }
        int i = 0;
        while( i < transactions.size()){
-           System.out.println(transactions.get(i).toString());
+           //System.out.println(transactions.get(i).toString());
            i++;
        }
     }
