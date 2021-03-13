@@ -8,21 +8,17 @@ import com.Spring.BillHub.model.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.security.core.GrantedAuthority;
 // import org.springframework.security.core.authority.SimpleGrantedAuthority;
-// import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Repository;
 // import org.springframework.stereotype.Controller;
 // import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.*;
 // import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 // import org.springframework.web.bind.annotation.RequestMethod;
 // import org.springframework.web.bind.annotation.RequestParam;
 // import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 // import org.springframework.web.servlet.ModelAndView;
 
 import com.Spring.BillHub.annotation.UserLoginToken;
@@ -35,17 +31,23 @@ import com.Spring.BillHub.service.UserService;
 import com.alibaba.fastjson.JSONObject;
 // import ch.qos.logback.classic.Logger;
 
+import java.security.Principal;
+
+import javax.servlet.http.HttpServletRequest;
+import com.Spring.BillHub.service.UserServicelmpl;
+import com.google.common.net.MediaType;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController        
 @RequestMapping("/api/v1/")
 public class UserController {
-     @Autowired
+	@Autowired
 	private UserService userService;
-     @Autowired
+	@Autowired
 	private UserRepo repository;
-     @Autowired
+	@Autowired
     private TokenService tokenService;
+	private Object put;
 
 	//constructor
 	public UserController(UserService userService) {
@@ -105,7 +107,20 @@ public class UserController {
 
 
 	}
-	
+	@GetMapping("/account")
+	@ResponseBody
+	public Object accountDetails(@RequestParam String ID)
+	{
+		User user = repository.findByEmail(ID);
+
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("firstName", user.getFirstName());
+		jsonObject.put("lastName", user.getLastName());
+
+		return jsonObject;
+	}
+
+
 	//This section is for testing only!
 	@UserLoginToken
 	@GetMapping("/dashboard")

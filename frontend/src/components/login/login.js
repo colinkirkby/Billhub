@@ -1,7 +1,7 @@
 import React, {Component, useState} from 'react'
 import { Grid,Paper, Avatar, TextField, Button, Typography } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import '../../components/pages/General.css';
+import '../pages/General.css';
 
 // import Signuppage from '../pages/Signuppage';
 // import { Redirect, Route } from "react-router-dom";
@@ -48,7 +48,6 @@ class loginUserComponent extends Component{
                     console.log(res.data.message);
                     const {token} = res.data.token;
                     sessionStorage.setItem("access_token", token);
-                    sessionStorage.setItem("email",user.email)
                     this.handleLogin();
                     window.location.replace("/dashboard");
                 }
@@ -82,6 +81,10 @@ class loginUserComponent extends Component{
         <Grid>
             <Paper elevation={10} style={paperStyle}>
                 <Grid align='center'>
+                    <div className = 'page-title'>
+                        <h1>Sign In</h1>
+                    </div>
+
                      <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>
                     <h2>Sign In</h2>
                 </Grid>
