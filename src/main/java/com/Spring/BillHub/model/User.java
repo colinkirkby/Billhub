@@ -1,7 +1,5 @@
 package com.Spring.BillHub.model;
 
-import org.hibernate.annotations.TypeDef;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,7 +7,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "TESTING")       //This tells Hibernate the name of table is called "Testing"
-
 public class User extends AuditModel{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)   //use id as a primary key
@@ -33,9 +30,17 @@ public class User extends AuditModel{
     private String password;          //format of password to be discussed later
 
 
-    @OneToMany (mappedBy = "id")
+    //    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(
+//            name = "transactions",
+//            joinColumns = @JoinColumn(
+//                    name = "user_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn (
+//                    name = "transaction_id", referencedColumnName = "id")
+//    )
+    @ElementCollection
+    private List<Transaction> transactions = new ArrayList<>();
 
-    private Collection<Transaction> transactions;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)   //Eager: everytime we retrive an user, we retrive his/her role
     @JoinTable(                             //introduce a third table to maintain the relationship between the two tables
@@ -51,7 +56,8 @@ public class User extends AuditModel{
 
 
     //default constructor
-    public User() {}
+    public User() {
+    }
 
     //constructor to initialize the arguments above
     public User(String firstName, String lastName, String email, String password, Collection<Role> roles) {
@@ -61,8 +67,6 @@ public class User extends AuditModel{
         this.email = email;
         this.password = password;
         this.roles = roles;
-
-
     }
 
 
@@ -104,6 +108,7 @@ public class User extends AuditModel{
         this.roles = roles;
     }
 
+
     public AccountType getAccountType() {
         return accountType;
     }
@@ -111,13 +116,19 @@ public class User extends AuditModel{
     public void setAccountType(AccountType accountType) {
         this.accountType = accountType;
     }
-    public void addTransaction(Transaction newtrans){
-        //ArrayList<Transaction> newtranslist = transactions;
-        this.transactions.add(newtrans);
 
-    System.out.println(this.transactions.size());}
-    
-    
+    public List<Transaction> getTransactionsList() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public void addTransaction(Transaction transaction) {
+        this.transactions.add(transaction);
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -129,6 +140,7 @@ public class User extends AuditModel{
                 ", roles=" + roles +
                 '}';
     }
+
     public void getTransactions(){
        if(transactions.isEmpty()){
            System.out.println("its empty bruh");

@@ -29,6 +29,16 @@ public class Transaction {
 
     public Transaction(){
     }
+
+    public Transaction(String email, String name, String type, String date, String amount, long id) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.type = type;
+        this.date = date;
+        this.amount = amount;
+    }
+
     public Transaction(String[] input) {
         email = input[0];
         name = input[1];
