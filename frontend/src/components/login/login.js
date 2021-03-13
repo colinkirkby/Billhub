@@ -2,7 +2,8 @@ import React, {Component, useState} from 'react'
 import { Grid,Paper, Avatar, TextField, Button, Typography } from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import '../../components/pages/General.css';
-
+import axios from 'axios';
+import GoogleLogin from 'react-google-login';
 // import Signuppage from '../pages/Signuppage';
 // import { Redirect, Route } from "react-router-dom";
 // import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -108,6 +109,34 @@ class loginUserComponent extends Component{
                         Sign In
                     </Button>
                 </form>
+
+                <br/>
+                <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+                <GoogleLogin
+                        clientId="896111746806-t9h64076lkejcuv9qt5v99k7o534vt3c.apps.googleusercontent.com"
+                        buttonText="Login"
+                        onSuccess={function (googleUser) {
+                          const token = googleUser.getAuthResponse().id_token;
+                          axios.post('http://localhost:8080/homepage/verify', token, {
+                            "headers": {
+                              "content-type": "application/json",
+                              },
+                          })
+                          .then(function (response) {
+                            window.location.replace('/homepage');
+                            console.log(response);
+                          })
+                          .catch(function (error) {
+
+                            console.log(error)
+                          })
+                        }}
+                          onFailure={function() {
+                            console.log("Error")
+                          }}
+                          cookiePolicy={'single_host_origin'}
+                      />
+                      </div>
                 
                 <br/>
                 <br/>
