@@ -19,4 +19,4 @@ User Stories:
 * As an unregistered user, I want to be able to go to the home page to see what services are available if I sign up
 * As a registered user I want to be able to choose if my financial information is shared so I can keep my privacy
 * As a user I want the pages to be responsive and visually appealing
-* As an unregistered user, I want to check the meaning of financial terms within a financial glossary page
+* As an unregistered user, I want to be able check the meaning of major financial terms appeared across the website within a financial glossary page
