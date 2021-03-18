@@ -5,6 +5,9 @@ package com.Spring.BillHub.Controller;
 // import javax.servlet.http.HttpServletRequest;
 
 import com.Spring.BillHub.model.Transaction;
+
+import javax.validation.Valid;
+
 //import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.security.core.GrantedAuthority;
@@ -62,7 +65,7 @@ public class UserController {
 	
 
 	@PostMapping("/registration")
-	public User registerUserAccount(@RequestBody UserRegistrationDto registrationDto) {
+	public User registerUserAccount(@Valid @RequestBody UserRegistrationDto registrationDto) {
 		return userService.save(registrationDto);
 	}
 	

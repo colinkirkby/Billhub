@@ -1,6 +1,10 @@
 package com.Spring.BillHub.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -17,12 +21,18 @@ public class User extends AuditModel{
     )
     private Long id;
 
+    @NotNull
+    @Size(min =2, max=20, message = "First Name should have at least 2 characters")
     @Column(name = "first_name")       //tells Hibernate to create a column called "user_name"
     private String firstName;
 
+    @NotNull
+    @Size(min =2, max= 20, message = "Last Name should have at least 2 characters")
     @Column(name = "last_name")      //tells Hibernate to create a column called "first_name"
     private String lastName;
 
+    @NotNull
+    @Email
     @Column(name = "email")          //tells Hibernate to create a column called "e-mail"
     private String email;
 
