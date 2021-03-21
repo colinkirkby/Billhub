@@ -37,7 +37,7 @@ public class TransactionController {
     // @PutMapping(value = "/newtrans", consumes = "application/json")
     // public ResponseEntity<Object> newTrans(@RequestBody String transactionJSON) {
         // 
-        DEBUG CODE
+        // DEBUG CODE
 // 
             // System.out.println("Made it in the function!");
 // 
