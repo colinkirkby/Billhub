@@ -20,11 +20,15 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 // import org.springframework.web.bind.annotation.RequestMethod;
-// import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestParam;
 // import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 // import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import com.Spring.BillHub.annotation.UserLoginToken;
 import com.Spring.BillHub.dto.UserRegistrationDto;
@@ -97,14 +101,35 @@ public class UserController {
 		Transaction transaction = new Transaction(newTransaction);
 		System.out.println("adding new transaction");
 		repository.findByEmail(transaction.getEmail()).addTransaction(transaction);
+		System.out.println(newTransaction[0]);
 
 		return 200;
 
 		//System.out.println(user.toString());
-		//System.out.println(newTransaction[0]);
 		//repository.save(user);
 
 
+	}
+
+	@GetMapping("/entries")
+	@ResponseBody
+	public Object[] entryList(@RequestParam String ID)
+	{
+		// User user = repository.findByEmail(ID);
+		// Object[] transaction = new Object[4];
+		// transaction[0] = 1;
+		// transaction[1] = 2;
+		// transaction[2] = 3;
+		// transaction[3] = 4;
+
+		User user = repository.findByEmail(ID);
+		int numberOfTransactions = user.getTransactionsList().size();
+		
+		Object[] transactionArray = new Object[numberOfTransactions];
+		transactionArray = user.getTransactionsList().toArray();
+		System.out.println("got the transactions");
+		System.out.println("there are " + numberOfTransactions + " transactions");
+		return transactionArray;
 	}
 	
 	//This section is for testing only!

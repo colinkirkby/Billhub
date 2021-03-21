@@ -61,8 +61,8 @@ class App extends Component {
           <PrivateRoute path = '/account' loggedIn = { sessionStorage.getItem("access_token")} component = {Account} />
 
             {/* <Route path = '/dashboard/account' component = {Account} /> */}
-            <Route path = '/dashboard/new-entry' component = {NewEntry} />
-            <Route path = '/dashboard/entries' component = {EntryList} />
+            {/* <Route path = '/dashboard/new-entry' component = {NewEntry} /> */}
+            <PrivateRoute path = '/entries' loggedIn = { sessionStorage.getItem("access_token")} component = {EntryList} />
         </Switch>
       </Router>
   );

@@ -116,6 +116,7 @@ const customStyles = {
   };
 const options = [
 {value: 'food', label: 'Food'},
+{value: 'health', label: 'Health'},
 {value: 'entertainment', label: 'Entertainment'},
 {value: 'travel', label: 'Travel'},
 {value: 'other', label: 'Other'},
@@ -182,13 +183,13 @@ return(
                 onValueChange = {(value, name) => setAmount(value)}
                 />
                 </div>
-                <Subhead>Name</Subhead>
+                <Subhead>Description</Subhead>
                 <div >
                   <form >                
                       
                       <input type='text'
                       onChange={e => setName(e.target.value)}
-                      placeholder = "enter name"
+                      placeholder = "enter description"
                       className = "nameform" />
                   </form>
                   

@@ -19,9 +19,7 @@ function Dashboard()
                 </div>
 
                 <div className = 'dashboard-cards'>
-                    
-                        
-                            <Dialog/>
+                    <Dialog/>
                         
                     
 
