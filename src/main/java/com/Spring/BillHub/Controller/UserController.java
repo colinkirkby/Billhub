@@ -7,6 +7,8 @@ package com.Spring.BillHub.Controller;
 import com.Spring.BillHub.model.Transaction;
 //import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 // import org.springframework.security.core.GrantedAuthority;
 // import org.springframework.security.core.authority.SimpleGrantedAuthority;
 // import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 // import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -91,25 +94,39 @@ public class UserController {
 				jsonObject.put("message", "Invalid username or password");
 				return jsonObject;
 			}
-		}
+		}	
+	}
+
+
+	@GetMapping("/account")
+	@ResponseBody
+	public Object accountDetails(@RequestParam String ID)
+	{
+		User user = repository.findByEmail(ID);
 		
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("firstName", user.getFirstName());
+		jsonObject.put("lastName", user.getLastName());
+		
+		return jsonObject;
 	}
-	//@RequestBody UserTransactionDto userTransactionDto
-	// add a new transaction to the account
+
 	@PostMapping("/newtrans")
-	public Object newTrans(@RequestBody String[] newTransaction ) throws UsernameNotFoundException {
+    public Object newTrans(@RequestBody String[] newTransaction) 
+	{
 		Transaction transaction = new Transaction(newTransaction);
-		System.out.println("adding new transaction");
-		repository.findByEmail(transaction.getEmail()).addTransaction(transaction);
-		System.out.println(newTransaction[0]);
+		User user = repository.findByEmail(transaction.getEmail());
 
+		Long id = (long) user.getTransactionsList().size() + 1;
+		transaction.setId(id);
+    
+		user.addTransaction(transaction);
+        repository.save(user);
+
+		System.out.println("added transaction and saved user");
 		return 200;
+    }
 
-		//System.out.println(user.toString());
-		//repository.save(user);
-
-
-	}
 
 	@GetMapping("/entries")
 	@ResponseBody

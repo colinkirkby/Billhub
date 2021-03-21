@@ -10,7 +10,7 @@ import DatePicker from "react-datepicker";
 import {format} from 'date-fns'
 
 import "react-datepicker/dist/react-datepicker.css";
-
+import UserService from '../../UserService';
 
 
 const TRANSACTION_API_BASE_URL = "http://localhost:8080/api/v1/newtrans";
@@ -27,7 +27,7 @@ const customStyles2 = {
 }
 const DateCont = styled.div`
 display: flex;
-flex direnction: column;
+flex direction: column;
 justify content: center;
 `
 const Container = styled.div`
@@ -86,13 +86,13 @@ font-size: 45px;
 const Subhead2 = styled.h1`
 font-size: 24px;
 transform: translate(-25px,0px);
-postion: relative;
+position: relative;
 text-align: center;
 `
 const Subhead = styled.h1`
 font-size: 24px;
 transform: translate(0px,0px);
-postion: relative;
+position: relative;
 text-align: left;
 `
 const customStyles = {
@@ -164,7 +164,7 @@ return(
                 <Header></Header>
                 <div >
                 
-                <Subhead>Catagory</Subhead>
+                <Subhead>Category</Subhead>
                 <Select options = {options}
                   onChange={(value) => setCatagory(value.label)}
                   autoFocus = {true}
@@ -240,6 +240,7 @@ function closeAndSubmit(){
     
   }
 }
+
 }
 function handleChange(selected){
   console.log(selected);
