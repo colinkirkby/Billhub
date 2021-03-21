@@ -15,15 +15,15 @@ import{
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 import './Maps.css';
+import axios from 'axios';
 
-
+const MAP_GET_POINT = "http://localhost:8080/api/v1/getpoint";
+const output = [];
+output[0] = 0;
+output[1] = 0;
 
 // the array that will be used to show the locations values
-var  values = [];
-values[0] = 0;
-values[1] = 0;
-values[2] = 0;
-values[3] = 0;
+
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -55,6 +55,7 @@ function App() {
 
 const [marker, setMarker] = React.useState([]);
 const [selected, setSelected] = React.useState(null);
+const [values,setValues] = React.useState([]);
 
 const mapRef = React.useRef();
 const onMapLoad = React.useCallback((map) => {
@@ -101,6 +102,7 @@ const panTo = React.useCallback((target) => {
             key={`${marker.lat}-${marker.lng}`}
             position={{ lat: marker.lat, lng: marker.lng }}
             onClick={() => {
+              getinfo(marker.lat,marker.lng,setValues);
               setSelected(marker);
             }}
             />
@@ -114,13 +116,11 @@ const panTo = React.useCallback((target) => {
           >
             
             <div className = "data">
-              <p1>cost of living = {values[0]}</p1>
-              <p2>average income = {values[1]}</p2>
-              <p3>average rent = {values[2]}</p3>
-              <p4>data points = {values[3]}</p4>
-              {console.log(marker[0].lat)}
-              {console.log(marker[0].lng)}
-            
+              <p1>cost of living = {values.cost}</p1>
+              <p2>average income = {values.income}</p2>
+              <p3>average rent = {values.rent}</p3>
+              <p4>data points = {values.datapoints}</p4>
+              
             </div>
             
           </InfoWindow>
@@ -128,7 +128,7 @@ const panTo = React.useCallback((target) => {
           
           <h2>Cost Map</h2>
           </GoogleMap>
-          <Dialog/>
+         
          
       
       </div>
@@ -193,5 +193,30 @@ function Search({ panTo }) {
     </div>
   );
 }
+
+async function getinfo (lat,lng,setValues){
+  
+  
+  output[0] = lat
+  output[1] = lng
+  console.log("coming from getinfo 1")
+  console.log(lat)
+  console.log(lng)
+            
+const res = await axios.get(MAP_GET_POINT,{
+    params: {
+      latitude: lat,
+      longitude: lng 
+    }})
+    console.log("success") 
+    console.log(res.data)
+    console.log(res.data.income)
+    
+    setValues(res.data)
+    
+
+}
+
+
 
 export default App;

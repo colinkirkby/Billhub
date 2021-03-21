@@ -1,4 +1,4 @@
-package com.billhub.main.mappage.java.model;
+package com.Spring.BillHub.model;
 public class User_Data{
     private double Rent;
     private double Cost;
