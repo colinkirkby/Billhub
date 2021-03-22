@@ -8,7 +8,7 @@ import Account from './components/pages/Account';
 import Maps from './components/pages/Maps';
 import Glossary from './components/pages/Glossary';
 import ResourcePage from './components/pages/ResourcePage';
-import NewEntry from './components/pages/NewEntry';
+// import NewEntry from './components/pages/NewEntry';
 import EntryList from './components/pages/EntryList';
 import Homepage from "./components/pages/Homepage";
 import Loginpage from "./components/pages/Loginpage";
@@ -61,8 +61,8 @@ class App extends Component {
           <PrivateRoute path = '/account' loggedIn = { sessionStorage.getItem("access_token")} component = {Account} />
 
             {/* <Route path = '/dashboard/account' component = {Account} /> */}
-            <Route path = '/dashboard/new-entry' component = {NewEntry} />
-            <Route path = '/dashboard/entries' component = {EntryList} />
+            {/* <Route path = '/dashboard/new-entry' component = {NewEntry} /> */}
+            <PrivateRoute path = '/entries' loggedIn = { sessionStorage.getItem("access_token")} component = {EntryList} />
         </Switch>
       </Router>
   );
