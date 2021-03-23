@@ -15,11 +15,6 @@ const EntryList = () =>
             UserService.getEntries(userEmail)
             .then(res => {
                 console.log("success");
-                if (res.data == 204)
-                {
-                    window.alert("You currently have no transaction entries to display.");
-                    window.location.replace("/dashboard");
-                }
                 setEntries(res.data);
             })
             .catch((error) => {
