@@ -1,5 +1,7 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
+import { Button } from '@material-ui/core'; 
+import DeleteIcon from '@material-ui/icons/Delete';
 import './EntryList.css';
 import './General.css';
 import UserService from '../../UserService';
@@ -29,6 +31,10 @@ const EntryList = () =>
     getEntryList()
     }, [])
 
+    function deleteEntry(id) {
+        window.alert("Sorry, this featured hasn't been implemented yet.");
+    }
+
     return (
         <div className = 'page'>
             <div className = 'page-container container'>
@@ -43,17 +49,25 @@ const EntryList = () =>
                                 <div className = 'entry' key = {entry.id}>
                                     <div className = 'details'>
                                         <h4>Date: 
-                                            <p>{moment(entry.date, 'YYYY-DD-MMThh:mm:ss').format('MM/DD/YYYY')}</p>
+                                            <span>{moment(entry.date).format(moment.HTML5_FMT.DATE)}</span>
                                         </h4>
                                         <h4>Category: 
-                                            <p>{entry.type}</p>
+                                            <span>{entry.type}</span>
                                         </h4>
                                         <h4>Amount: 
-                                            <p>${entry.amount}</p>
+                                            <span>${entry.amount}</span>
                                         </h4>
                                         <h4>Description: 
-                                            <p>{entry.name}</p>
+                                            <span>{entry.name}</span>
                                         </h4>
+                                        <Button 
+                                            startIcon={<DeleteIcon />}
+                                            variant = "contained"
+                                            size = "small"
+                                            onClick={() => { deleteEntry(entry.id) }}
+                                        >
+                                            Delete Entry    
+                                        </Button>
                                     </div> 
                                 </div>
                             );

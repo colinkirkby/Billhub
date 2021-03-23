@@ -1,6 +1,5 @@
-import React, {Component, useMemo} from 'react';
+import React, { useMemo} from 'react';
 import GlossaryTable from './GlossaryTable';
-import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core'
 import './General.css';
 import './Glossary.css';

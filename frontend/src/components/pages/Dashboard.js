@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import './Dashboard.css';
 import './General.css';
 import AvgSpending from '../charts/AvgSpending';
 import CostBreakdown from '../charts/CostBreakdown';
-import { Button } from '../button/Button';
+import EntryList from './EntryList';
 import Dialog from '../dialog/Dialog';
 
 function Dashboard()
 {
-    const [button, setButton] = useState(true);
     console.log(sessionStorage.getItem('email')) 
     return (
         <div className = 'page'>
@@ -23,15 +21,15 @@ function Dashboard()
                         
                     
 
-                    <div className = 'card'>
-                        <li className = 'card-button'>
-                            <Link to = '/entries' className = 'button-link'>
-                                    <Button buttonStyle = 'btn--outline'>View Existing Entries</Button>
-                            </Link>
-                            
-                        </li>
+                    {/* <div className = 'card'> */}
+                        {/* <li className = 'card-button'> */}
+                            {/* <Link to = '/entries' className = 'button-link'> */}
+                                    {/* <Button buttonStyle = 'btn--outline'>View Existing Entries</Button> */}
+                            {/* </Link> */}
+                            {/*  */}
+                        {/* </li> */}
 
-                    </div>
+                    {/* </div> */}
                     
                 </div>
 
@@ -43,6 +41,10 @@ function Dashboard()
                     <div className = 'charts-right'>
                         <CostBreakdown />
                     </div>
+                </div>
+
+                <div className = 'entry-list'>
+                    <EntryList/>
                 </div>
             </div>
         </div>

@@ -221,6 +221,7 @@ return(
       </div>
 
 );
+
 function closeAndSubmit(){
   console.log(email);
   if (amount != null && name != null && name != null && date != null){ 
@@ -231,20 +232,23 @@ function closeAndSubmit(){
     inputs[3] = date;
     inputs[4] = amount;
     
-      setModalIsOpen(false);
-      console.log(inputs);
-      axios.post(TRANSACTION_API_BASE_URL,inputs);
-     setAmount(null);
-     setName(null);
-     setCatagory(null);
-    
+    setModalIsOpen(false);
+    console.log(inputs);
+    axios.post(TRANSACTION_API_BASE_URL,inputs);
+
+    setAmount(null);
+    setName(null);
+    setCatagory(null);
+
+    setTimeout(function() {
+      window.location.reload();
+    }, 100);
   }
 }
 
-}
 function handleChange(selected){
   console.log(selected);
-
+}
 }
 
     

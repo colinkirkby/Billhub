@@ -1,5 +1,4 @@
-import React, {useEffect, useState, Component} from 'react';
-import axios from 'axios';
+import React, {Component} from 'react';
 
 import './Account.css';
 import './General.css';

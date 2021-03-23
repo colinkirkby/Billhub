@@ -37,6 +37,12 @@
     cursor: pointer;
 }
 
+.entry-list
+{
+    margin-top: 50px;
+    margin-left: -120px;
+}
+
 .charts
 {
     display: grid;

@@ -13,7 +13,7 @@
     border-radius: 5px;
     padding: 20px;
     margin: 10px;
-    width: 30%;
+    width: 50%;
     color: black;
     flex-basis: width;
     background-color: rgb(165, 230, 230);
@@ -21,12 +21,17 @@
 
 .details h4 {
     margin-top: 5px;
-    margin-bottom: 30px;
-    font-size: 20px;
+    margin-bottom: 10px;
+    font-size: 18px;
 }
 
-.details p {
+.details span {
     margin-bottom: 5px;
+    margin-left: 10px;
     font-size: 16px;
     opacity: 0.7;
+}
+
+.delete-button {
+    background-color: white;
 }

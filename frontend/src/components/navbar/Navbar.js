@@ -32,6 +32,44 @@ function Navbar(props)
                                 </Link>
                             </li>
 
+                            {props.isLoggedIn ?
+                            null :
+                            <li className = 'nav-item'>
+                                <Link to = '/login' className = 'nav-links'>
+                                    <RiLoginBoxFill className = 'nav-icon' />
+                                    Sign In
+                                </Link>
+                            </li>}
+
+                            {props.isLoggedIn ?
+                            <li className = "nav-item">
+                                <Link to = '/dashboard' className = 'nav-links'>
+                                    <RiDashboardFill className = 'nav-icon' />
+                                    Dashboard
+                                </Link>
+                            </li>
+                            :
+                            null}
+
+                            {props.isLoggedIn ?
+                            <li className = 'nav-item'>
+                                <Link to = '/account' className = 'nav-links'>
+                                    <RiAccountCircleFill className = 'nav-icon' />
+                                    Account
+                                </Link>
+                            </li>
+                            :
+                            null}
+
+                            {props.isLoggedIn ?
+                            null :
+                            <li className = 'nav-item'>
+                                <Link to = '/register' className = 'nav-links'>
+                                    <AiFillPlusCircle className = 'nav-icon' />
+                                    Register
+                                </Link>
+                            </li>}
+
                             <li className = 'nav-item'>
                                 <Link to = '/maps' className = 'nav-links'>
                                     <FaMapMarkerAlt className = 'nav-icon' />
@@ -52,37 +90,7 @@ function Navbar(props)
                                     Resources
                                 </Link>
                             </li>
-                            
-                            {props.isLoggedIn ?
-                                <li className = "nav-item">
-                                    <Link to = '/dashboard' className = 'nav-links'>
-                                        <RiDashboardFill className = 'nav-icon' />
-                                        Dashboard
-                                    </Link>
-                                </li>
-                                :
-                                null}
 
-                            {props.isLoggedIn ?
-                                <li className = 'nav-item'>
-                                    <Link to = '/account' className = 'nav-links'>
-                                        <RiAccountCircleFill className = 'nav-icon' />
-                                        Account
-                                    </Link>
-                                </li>
-                                :
-                                null}
-                            
-
-                            {props.isLoggedIn ?
-                            null :
-                            <li className = 'nav-item'>
-                                <Link to = '/login' className = 'nav-links'>
-                                    <RiLoginBoxFill className = 'nav-icon' />
-                                    Sign In
-                                </Link>
-                            </li>}
-                            
                             {props.isLoggedIn ?
                             <li className = 'nav-item'>
                                 <Link to = '/logout' className = 'nav-links'>
@@ -92,15 +100,7 @@ function Navbar(props)
                             </li>
                             :
                             null}
-
-                            {props.isLoggedIn ?
-                            null :
-                            <li className = 'nav-item'>
-                                <Link to = '/register' className = 'nav-links'>
-                                    <AiFillPlusCircle className = 'nav-icon' />
-                                    Register
-                                </Link>
-                            </li>}
+                            
                         </ul>
                     </nav>
                 </div>
