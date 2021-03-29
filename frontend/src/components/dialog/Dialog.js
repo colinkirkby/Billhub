@@ -224,7 +224,15 @@ return(
 
 function closeAndSubmit(){
   console.log(email);
-  if (amount != null && name != null && name != null && date != null){ 
+  if (amount === null){
+    window.alert("Amount cannot be empty");
+  } else if (!/^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/.test(amount)){
+    window.alert("Invalid amount");
+  } else if (name === null){
+    window.alert("Name cannot be empty");
+  } else if (catagory === null){
+    window.alert("Name cannot be empty");
+  } else if (amount != null && name != null && catagory != null && date != null){ 
     
     inputs[0] = email;
     inputs[1] = name;
@@ -244,6 +252,7 @@ function closeAndSubmit(){
       window.location.reload();
     }, 100);
   }
+
 }
 
 function handleChange(selected){

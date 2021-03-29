@@ -43,7 +43,7 @@ class registerUserComponent extends Component{
         })
             .catch(err=>{
                 console.log(err);
-                window.alert("The email has been registered.");
+                window.alert("Invalid input format.");
         });
     }
 
