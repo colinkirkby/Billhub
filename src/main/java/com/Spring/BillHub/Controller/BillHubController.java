@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
 
-@CrossOrigin(origins = {"http://localhost:3000", "https://billhub-276.herokuapp.com"})
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8080", "https://billhub-276.herokuapp.com"})
 @RestController
 public class BillHubController {
     private static final String CLIENT_ID = "896111746806-t9h64076lkejcuv9qt5v99k7o534vt3c.apps.googleusercontent.com";
@@ -44,74 +44,74 @@ public class BillHubController {
     /*
         login with google, if new user, add to database
      */
-    @GetMapping("/login-successful")
-    ResponseEntity<Object> login(@AuthenticationPrincipal OidcUser user) {
-        String email = (String) user.getAttributes().get("email");
+    // @GetMapping("/login-successful")
+    // ResponseEntity<Object> login(@AuthenticationPrincipal OidcUser user) {
+    //     String email = (String) user.getAttributes().get("email");
 
-        User googleSignInCheck = userRepo.findByEmail(email);
+    //     User googleSignInCheck = userRepo.findByEmail(email);
 
-        if(googleSignInCheck == null) {
-            User newUser = new User();
-            newUser.setFirstName((String)user.getAttributes().get("given_name"));
-            newUser.setLastName((String) user.getAttributes().get("family_name"));
-            newUser.setEmail((String) user.getAttributes().get("email"));
-            newUser.setAccountType(AccountType.GMAIL);
-            userRepo.save(newUser);
+    //     if(googleSignInCheck == null) {
+    //         User newUser = new User();
+    //         newUser.setFirstName((String)user.getAttributes().get("given_name"));
+    //         newUser.setLastName((String) user.getAttributes().get("family_name"));
+    //         newUser.setEmail((String) user.getAttributes().get("email"));
+    //         newUser.setAccountType(AccountType.GMAIL);
+    //         userRepo.save(newUser);
 
-            return new ResponseEntity<>(user, HttpStatus.OK);
-        }
+    //         return new ResponseEntity<>(user, HttpStatus.OK);
+    //     }
 
-        return new ResponseEntity<>(googleSignInCheck, HttpStatus.OK);
-    }
+    //     return new ResponseEntity<>(googleSignInCheck, HttpStatus.OK);
+    // }
 
-    /*
-        Authenticate Google sign in with Token sent from Google User
-     */
-    @RequestMapping(value = "/homepage/verify", method = RequestMethod.POST, consumes = "application/json")
-    @ResponseBody
-    @ResponseStatus(value = HttpStatus.OK)
-    public void handle(@RequestBody String idTokenString, HttpServletResponse response) throws GeneralSecurityException, IOException {
-        GoogleIdTokenVerifier googleIdTokenVerifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new JacksonFactory())
-                .setAudience(Collections.singletonList(CLIENT_ID))
-                .build();
+    // /*
+    //     Authenticate Google sign in with Token sent from Google User
+    //  */
+    // @RequestMapping(value = "/homepage/verify", method = RequestMethod.POST, consumes = "application/json")
+    // @ResponseBody
+    // @ResponseStatus(value = HttpStatus.OK)
+    // public void handle(@RequestBody String idTokenString, HttpServletResponse response) throws GeneralSecurityException, IOException {
+    //     GoogleIdTokenVerifier googleIdTokenVerifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), new JacksonFactory())
+    //             .setAudience(Collections.singletonList(CLIENT_ID))
+    //             .build();
 
 
-        GoogleIdToken idToken = googleIdTokenVerifier.verify(idTokenString);
+    //     GoogleIdToken idToken = googleIdTokenVerifier.verify(idTokenString);
 
-        if(idToken != null) {
-            Payload payload = idToken.getPayload();
+    //     if(idToken != null) {
+    //         Payload payload = idToken.getPayload();
 
-            //optional identifier
-            String userId = payload.getSubject();
+    //         //optional identifier
+    //         String userId = payload.getSubject();
 
-            String email = payload.getEmail();
-            boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
-            String name = (String) payload.get("name");
-            String pictureUrl = (String) payload.get("picture");
-            String locale = (String) payload.get("locale");
-            String familyName = (String) payload.get("family_name");
-            String givenName = (String) payload.get("given_name");
+    //         String email = payload.getEmail();
+    //         boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
+    //         String name = (String) payload.get("name");
+    //         String pictureUrl = (String) payload.get("picture");
+    //         String locale = (String) payload.get("locale");
+    //         String familyName = (String) payload.get("family_name");
+    //         String givenName = (String) payload.get("given_name");
 
-            User newUser = userExits(email);
+    //         User newUser = userExits(email);
 
-            //new User
-            if(newUser == null) {
-                newUser = new User();
-                newUser.setEmail(email);
-                newUser.setFirstName(givenName);
-                newUser.setLastName(familyName);
-                newUser.setAccountType(AccountType.GMAIL);
-                newUser.toString();
-            } else {
-                System.out.println("Welcome back!");
-            }
+    //         //new User
+    //         if(newUser == null) {
+    //             newUser = new User();
+    //             newUser.setEmail(email);
+    //             newUser.setFirstName(givenName);
+    //             newUser.setLastName(familyName);
+    //             newUser.setAccountType(AccountType.GMAIL);
+    //             newUser.toString();
+    //         } else {
+    //             System.out.println("Welcome back!");
+    //         }
 
-            response.setHeader("Location", "/homepage");
+    //         response.setHeader("Location", "/homepage");
 
-        } else {
-            System.out.println("Invalid ID token");
-        }
-    }
+    //     } else {
+    //         System.out.println("Invalid ID token");
+    //     }
+    // }
 
 
     //************************* Helper functions below *************************\\

@@ -49,7 +49,7 @@ import com.alibaba.fastjson.JSONObject;
 // import ch.qos.logback.classic.Logger;
 
 
-@CrossOrigin(origins = {"http://localhost:3000", "https://billhub-276.herokuapp.com"})
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8080", "https://billhub-276.herokuapp.com"})
 @RestController        
 @RequestMapping("/api/v1/")
 public class UserController {

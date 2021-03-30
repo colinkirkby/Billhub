@@ -13,7 +13,7 @@ import com.Spring.BillHub.service.UserService;
 
 
 
-@CrossOrigin(origins = {"http://localhost:3000", "https://billhub-276.herokuapp.com"})
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:8080", "https://billhub-276.herokuapp.com"})
 @RestController
 @RequestMapping("/api/v2/")
 public class TransactionController {
