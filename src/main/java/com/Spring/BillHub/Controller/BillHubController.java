@@ -1,4 +1,4 @@
-package com.Spring.BillHub;
+package com.Spring.BillHub.Controller;
 
 import com.Spring.BillHub.model.AccountType;
 import com.Spring.BillHub.model.User;
@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "https://billhub-276.herokuapp.com"})
 @RestController
 public class BillHubController {
     private static final String CLIENT_ID = "896111746806-t9h64076lkejcuv9qt5v99k7o534vt3c.apps.googleusercontent.com";
