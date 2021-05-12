@@ -92,7 +92,7 @@ class loginUserComponent extends Component{
                     </div>
                     
                     <div className ="form-group">
-                        <TextField label="Password" placeholder="Password" name="password" className="form-control"
+                        <TextField label="Password" type="password" placeholder="Password" name="password" className="form-control"
                             value={this.state.password} onChange={this.changePasswordHandler} fullWidth required/>
                     </div>
 
