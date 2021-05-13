@@ -146,13 +146,34 @@ public class User extends AuditModel{
 
     public void getTransactions(){
         if(transactions.isEmpty()){
-            System.out.println("its empty bruh");
+            System.out.println("no transactions");
+        }
+        int i = 0;
+
+    }
+
+    private int findTransaction(long id){
+        if(transactions.isEmpty()){
+            System.out.println("no transactions");
         }
         int i = 0;
         while( i < transactions.size()){
-            //System.out.println(transactions.get(i).toString());
+            if(id == transactions.get(i).getId()){
+                return i;
+            }
             i++;
         }
+        return -1;
+    }public void deleteTransaction(long id){
+        int index = findTransaction(id);
+
+        if (index == -1){
+            System.out.println("transaction not found");}
+        transactions.remove(index);
+        int i = 0;
+
+
     }
+
 
 }

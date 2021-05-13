@@ -1,37 +1,37 @@
 * {
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
+}
 
 .entry {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .details {
-    background: white;
-    position: relative;
-    border-radius: 5px;
-    padding: 20px;
-    margin: 10px;
-    width: 50%;
-    color: black;
-    flex-basis: width;
-    background-color: rgb(165, 230, 230);
+  background: white;
+  position: relative;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 10px;
+  width: 50%;
+  color: black;
+  flex-basis: width;
+  background-color: rgb(240, 241, 255);
 }
 
 .details h4 {
-    margin-top: 5px;
-    margin-bottom: 10px;
-    font-size: 18px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 18px;
 }
 
 .details span {
-    margin-bottom: 5px;
-    margin-left: 10px;
-    font-size: 16px;
-    opacity: 0.7;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  font-size: 16px;
+  opacity: 0.7;
 }
 
 .delete-button {
-    background-color: white;
+  background-color: white;
 }
