@@ -163,6 +163,21 @@ public class UserController {
 		return 200;
 	}
 
+	@GetMapping("/totals")
+	@ResponseBody
+	public Object getTotals(@RequestParam String ID){
+		User user = repository.findByEmail(ID);
+		System.out.println("getting Totals");
+		float[] totals = new float[5];
+		totals[0] = user.getFoodTotal();
+		totals[1] = user.getHealthTotal();
+		totals[2] = user.getEntertainmentTotal();
+		totals[3] = user.getTravelTotal();
+		totals[4] = user.getOtherTotal();
+
+		return totals;
+	}
+
 	
 	//This section is for testing only!
 	@UserLoginToken
@@ -170,4 +185,6 @@ public class UserController {
 	public String getMessage() {
 		return "Welcome to BillHub!";
 	}
+
+
 }

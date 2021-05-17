@@ -1,11 +1,28 @@
-import React, { Component } from 'react';
+import React, { Component,useState,useEffect } from 'react';
 import CanvasJSReact from './canvasjs.react';
+import UserService from '../../UserService';
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 var CanvasJS = CanvasJSReact.CanvasJS;
 
+
 function CostBreakdown()
 {
+    const [totals, setTotals] = useState([])
+    let userEmail = sessionStorage.getItem("email");
+    useEffect(() => {async function getTotals(){
+        const res = await UserService.getTotals(userEmail)
+        .then(res => {
+            console.log(res.data);
+            setTotals(res.data);
+            console.log(totals);
+           
+        })
+        
+    }
+    getTotals()}, [])
+    let overalltotals = totals[0] + totals[1] + totals[2] + totals[3] + totals[4]
+    
     const options = {
         exportEnabled: true,
         animationEnabled: true,
@@ -21,10 +38,11 @@ function CostBreakdown()
             indexLabelFontSize: 16,
             indexLabel: "{label} - {y}%",
             dataPoints: [
-                { y: 49, label: "Food" },
-                { y: 18, label: "Clothing" },
-                { y: 9, label: "Utilities" },
-                { y: 5, label: "Personal" },
+                { y: Math.round((totals[0]/overalltotals)*100), label: "Food" },
+                { y: Math.round((totals[1]/overalltotals)*100), label: "Health" },
+                { y: Math.round((totals[2]/overalltotals)*100), label: "entertaiment" },
+                { y: Math.round((totals[3]/overalltotals)*100), label: "travel" },
+                { y: Math.round((totals[4]/overalltotals)*100), label: "other" },
             ]
         }]
     }

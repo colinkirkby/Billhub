@@ -26,8 +26,9 @@ const EntryList = () =>
     getEntryList()
     }, [])
 
-    function deleteEntry(id) {
-            UserService.deleteEntry(userEmail,id);
+    async function deleteEntry(id) {
+            await UserService.deleteEntry(userEmail,id);
+            refreshPage()
     }
 
     return (
@@ -59,7 +60,7 @@ const EntryList = () =>
                                             startIcon={<DeleteIcon />}
                                             variant = "contained"
                                             size = "small"
-                                            onClick={() => { deleteEntry(entry.id); refreshPage() }}
+                                            onClick={() => { deleteEntry(entry.id) }}
                                         >
                                             Delete Entry    
                                         </Button>

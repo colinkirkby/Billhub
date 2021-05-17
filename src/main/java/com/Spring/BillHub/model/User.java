@@ -1,5 +1,7 @@
 package com.Spring.BillHub.model;
 
+
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -55,6 +57,16 @@ public class User extends AuditModel{
 
     // enum for account type -> default to NOT_REGISTERED
     private AccountType accountType = AccountType.NOT_REGISTERED;
+    @Column(name = "food")
+    private float foodTotal = 0;
+    @Column(name = "entertainment")
+    private float entertainmentTotal=0;
+    @Column(name = "health")
+    private float healthTotal=0;
+    @Column(name = "travel")
+    private float travelTotal=0;
+    @Column(name = "other")
+    private float otherTotal=0;
 
 
     //default constructor
@@ -69,6 +81,7 @@ public class User extends AuditModel{
         this.email = email;
         this.password = password;
         this.roles = roles;
+
     }
 
 
@@ -129,6 +142,32 @@ public class User extends AuditModel{
 
     public void addTransaction(Transaction transaction) {
         this.transactions.add(transaction);
+        String type = transaction.getType();
+        String amount = transaction.getAmount();
+        float amountFlt = Float.parseFloat(amount);
+        type = type.toLowerCase();
+        if (type.equals("entertainment")){
+            entertainmentTotal = entertainmentTotal+amountFlt;
+            System.out.println(entertainmentTotal);
+        }
+        if (type.equals("health")){
+            healthTotal = healthTotal+amountFlt;
+            System.out.println(healthTotal + "added to total");
+        }
+        if (type.equals("travel")){
+            travelTotal = travelTotal+amountFlt;
+            System.out.println(travelTotal);
+        }
+        if(type.equals("other")){
+            otherTotal = otherTotal+amountFlt;
+            System.out.println(otherTotal);
+        }
+        if(type.equals("food")){
+            foodTotal = foodTotal+amountFlt;
+            System.out.println(foodTotal);
+
+
+        }
     }
 
     @Override
@@ -166,8 +205,32 @@ public class User extends AuditModel{
         return -1;
     }public void deleteTransaction(long id){
         int index = findTransaction(id);
+        String type = transactions.get(index).getType();
+        String amount = transactions.get(index).getAmount();
+        float amountFlt = Float.parseFloat(amount);
+        type = type.toLowerCase();
+        if (type.equals("entertainment")){
+            entertainmentTotal = entertainmentTotal- amountFlt;
+            System.out.println(entertainmentTotal);
+        }
+        if (type.equals("health")){
+            healthTotal = healthTotal-amountFlt;
+            System.out.println(healthTotal + "added to total");
+        }
+        if (type.equals("travel")){
+            travelTotal = travelTotal-amountFlt;
+            System.out.println(travelTotal);
+        }
+        if(type.equals("other")){
+            otherTotal = otherTotal-amountFlt;
+            System.out.println(otherTotal);
+        }
+        if(type.equals("food")) {
+            foodTotal = foodTotal - amountFlt;
+            System.out.println(foodTotal);
+        }
 
-        if (index == -1){
+            if (index == -1){
             System.out.println("transaction not found");}
         transactions.remove(index);
         int i = 0;
@@ -175,5 +238,23 @@ public class User extends AuditModel{
 
     }
 
+    public float getFoodTotal() {
+        return foodTotal;
+    }
 
+    public float getEntertainmentTotal() {
+        return entertainmentTotal;
+    }
+
+    public float getHealthTotal() {
+        return healthTotal;
+    }
+
+    public float getTravelTotal() {
+        return travelTotal;
+    }
+
+    public float getOtherTotal() {
+        return otherTotal;
+    }
 }

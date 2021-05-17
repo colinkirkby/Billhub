@@ -222,7 +222,7 @@ return(
 
 );
 
-function closeAndSubmit(){
+async function closeAndSubmit(){
   console.log(email);
   if (amount === null){
     window.alert("Amount cannot be empty");
@@ -242,7 +242,7 @@ function closeAndSubmit(){
     
     setModalIsOpen(false);
     console.log(inputs);
-    axios.post(TRANSACTION_API_BASE_URL,inputs);
+    await axios.post(TRANSACTION_API_BASE_URL,inputs);
 
     setAmount(null);
     setName(null);
@@ -251,6 +251,7 @@ function closeAndSubmit(){
     setTimeout(function() {
       window.location.reload();
     }, 100);
+    window.location.reload();
   }
 
 }

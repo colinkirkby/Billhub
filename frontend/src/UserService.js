@@ -5,7 +5,7 @@ const LOGIN_API = "http://localhost:8080/api/v1/login";
 const ACCOUNT_API = "http://localhost:8080/api/v1/account";
 const ENTRIES_API = "http://localhost:8080/api/v1/entries";
 const DELETE_ENTRY_API = "http://localhost:8080/api/v1/delete";
-
+const TOTALS_API = "http://localhost:8080/api/v1/totals";
 class UserService{
     
     // *** Save a new user into the database *** //
@@ -41,7 +41,15 @@ class UserService{
                 ID: userEmail,
                 id:transID
             }
+            
         })
+    }
+    getTotals(userEmail) {
+        return axios.get(TOTALS_API, {
+            params: {
+                ID: userEmail
+            }
+        });
     }
 }
 
