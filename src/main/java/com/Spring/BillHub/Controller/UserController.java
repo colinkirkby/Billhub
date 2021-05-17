@@ -154,6 +154,15 @@ public class UserController {
 		System.out.println("there are " + numberOfTransactions + " transactions");
 		return transactionArray;
 	}
+	@GetMapping("/delete")
+	@ResponseBody
+	public Object deleteTrans(@RequestParam String ID,Long id){
+		User user = repository.findByEmail(ID);
+		user.deleteTransaction(id);
+		repository.save(user);
+		return 200;
+	}
+
 	
 	//This section is for testing only!
 	@UserLoginToken

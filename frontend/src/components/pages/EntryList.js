@@ -27,7 +27,7 @@ const EntryList = () =>
     }, [])
 
     function deleteEntry(id) {
-        window.alert("Sorry, this featured hasn't been implemented yet.");
+            UserService.deleteEntry(userEmail,id);
     }
 
     return (
@@ -59,7 +59,7 @@ const EntryList = () =>
                                             startIcon={<DeleteIcon />}
                                             variant = "contained"
                                             size = "small"
-                                            onClick={() => { deleteEntry(entry.id) }}
+                                            onClick={() => { deleteEntry(entry.id); refreshPage() }}
                                         >
                                             Delete Entry    
                                         </Button>
@@ -74,5 +74,8 @@ const EntryList = () =>
     );
 }
 
+function refreshPage() {
+    window.location.reload(false);
+  }
 
 export default EntryList

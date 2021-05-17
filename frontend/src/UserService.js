@@ -4,7 +4,7 @@ const REGISTRATION_API = "http://localhost:8080/api/v1/registration";
 const LOGIN_API = "http://localhost:8080/api/v1/login";
 const ACCOUNT_API = "http://localhost:8080/api/v1/account";
 const ENTRIES_API = "http://localhost:8080/api/v1/entries";
-const DELETE_ENTRY_API = "http://localhost:8080/api/v1/remove-entry/{entryID}";
+const DELETE_ENTRY_API = "http://localhost:8080/api/v1/delete";
 
 class UserService{
     
@@ -34,6 +34,14 @@ class UserService{
                 ID: userEmail
             }
         });
+    }
+    deleteEntry(userEmail,transID){
+        return axios.get(DELETE_ENTRY_API, {
+            params: {
+                ID: userEmail,
+                id:transID
+            }
+        })
     }
 }
 
